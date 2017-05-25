@@ -2,8 +2,6 @@
 
 
 function searchTMDBbyMovie(queryTerm) {
-	console.log('hi');
-	queryTerm = 'Alladin';
 
 	var tmdbApiKey = '82f6be9756f8de0b7738603a7b3fab34';
 
