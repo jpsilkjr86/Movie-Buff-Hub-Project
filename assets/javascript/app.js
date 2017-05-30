@@ -8,5 +8,5 @@ $('#search-submit').on('click', function(e){
 	// empties input field
 	$('#main-search').val('');
 
-	searchTMDBbyMovie(searchQuery);
+	searchOMDBbyMovie(searchQuery);
 });
