@@ -10,3 +10,9 @@ $('#search-submit').on('click', function(e){
 
 	searchOMDBbyMovie(searchQuery);
 });
+
+// event listener for pressing ENTER key when in the input field
+$('#main-search').on('keypress', function(e){
+	// if the key is ENTER, trigger 'click' event on #search-submit
+	if (e.which === 13) {$('#search-submit').trigger('click');}
+});
