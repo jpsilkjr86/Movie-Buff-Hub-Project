@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Movie Buff Hub - About</title>
+	<!-- Link to jQuery for .js Files -->
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+	<!-- Link to Bootstrap & Custom Style Sheets-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!-- Added the below script references to get the navbar collapse to work -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<!-- Top-Floating Nav Bar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-film"></span>  Movie Buff Hub!</a>
+			<!-- collapse bars for when viewport is too small -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+				</button>
+			</div>
+			<!-- Wrap in collapse navbar div for mobile responsiveness -->
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav nav-tabs navbar-right">
+				  <li role="presentation"><a href="#">Home</a></li>
+				  <li role="presentation"><a href="#">History</a></li>
+				  <li role="presentation" class="active"><a href="#">About Us</a></li>
+				</ul>
+			</div> <!-- end of navbar-collapse -->
+		</div> <!-- end of navbar container -->
+	</nav> <!-- end of nav -->
+
+	<!-- Main Content Container -->
+	<div class="container">	
+		<div class="panel panel-default">
+			<div class="panel-heading">Search: </div>
+			<div class="panel-body">
+				<input type="text" class="form-control" placeholder="ex. The Green Mile" id="main-search">
+				<br>
+				<button type="submit" class="btn btn-default" id="search-submit">Submit</button>
+			</div> <!-- end of panel body -->
+		</div> <!-- end of panel default -->
+	</div> <!-- end of main content container -->
+
+	<!-- Links to our project's .js files -->
+	<script src="assets/javascript/ajax.js"></script>
+	<script src="assets/javascript/app.js"></script>
+
+</body>
+</html>
