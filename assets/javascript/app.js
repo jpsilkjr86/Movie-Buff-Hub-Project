@@ -2,7 +2,7 @@
 $('#search-submit').on('click', function(e){
 	// prevents page from auto-reloading
 	e.preventDefault();
-
+	// testing testing 123
 	// saves main search query as variable
 	var searchQuery = $('#main-search').val().trim();
 	// empties input field
