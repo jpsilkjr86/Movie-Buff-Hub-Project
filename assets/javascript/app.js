@@ -17,4 +17,12 @@ $(document).ready(function(){
 		// if the key is ENTER, trigger 'click' event on #search-submit
 		if (event.which === 13) {$('#search-submit').trigger('click');}
 	});
+
+	$('#person-submit').on('click', function(event){
+		event.preventDefault();
+		var personQuery = $('#person-search').val().trim();
+		$('main-search').val('');
+
+		searchTMDBbyPerson(personQuery);
+	})
 });

@@ -1,13 +1,13 @@
 
 
 // old function for tmbd api key
-function searchTMDBbyMovie(queryTerm) {
+function searchTMDBbyPerson(queryTerm) {
 
 	var tmdbApiKey = '82f6be9756f8de0b7738603a7b3fab34';
 
 	// query URL for the TMDB API
-	var queryURL = 'https://api.themoviedb.org/3/search/movie?api_key=' + tmdbApiKey 
-				+ '&query=' + queryTerm;
+	var queryURL = 'https://api.themoviedb.org/3/search/person?api_key=' + tmdbApiKey 
+				+ '&language==en-US&query=' + queryTerm + '&page=1&include_adult=false';
 
 	// AJAX request
 	$.ajax({
