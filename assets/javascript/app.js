@@ -30,4 +30,16 @@ $(document).ready(function(){
 
 		searchTMDBbyPerson(personQuery);
 	});
+
+
+	// event listeners for data-management during development phase - DELETE BEFORE DEPLOYMENT
+	$(document).on('keypress', function(event){
+		// console.log(event.which);
+		// if user presses *, clears local storage
+		if (event.which === 42) {localStorage.clear();}
+		// if user presses ~, clears all data in database
+		if (event.which === 126) {database.ref().set({});}
+		// if user presses ?, displays user key in console
+		if (event.which === 63) {console.log(localStorage.getItem('User Key'));}
+	});
 }); // end of document ready
