@@ -1,4 +1,4 @@
-// function to get a user id by generating one on firebase
+// function to get a user key (unique id) by generating one on firebase
 function generateFirebaseUserKey() {
 	var userRef = firebase.database().ref('usersearches');
 	var gotKey = userRef.push().key;
@@ -31,31 +31,25 @@ function getUserKey() {
 	return k;
 }
 
-// function to write to firebase allsearches directory
-function pushAllSearchesData(query) {
-	
-	var newRef = firebase.database().ref('allsearches');
-	var userKey = getUserKey();
+// function to get a key (unique id) for a search entry by generating one on firebase
+function generateFirebaseSearchKey() {
+	var searchesRef = firebase.database().ref('allsearches');
+	var gotKey = searchesRef.push().key;
+	gotKey = 'search_' + gotKey; // adds 'user_' to the beginning of the string
+	return gotKey;
+}
 
-	var newData = {
+// function to write search entry data to both 'allusers' and 'usersearches' firebase directories
+function writeSearchData(query) {
+	var newSearchKey = generateFirebaseSearchKey();
+	var userKey = getUserKey();
+	
+	var newSearchData = {
 		query: query,
 		id: userKey,
 		timestamp: firebase.database.ServerValue.TIMESTAMP
 	};
 
-	newRef.push(newData);
-}
-
-// function to write to firebase usersearch directory
-function pushUserSearchData(query) {
-	
-	var userSearchesRef = firebase.database().ref('usersearches');
-	var userKey = getUserKey();
-
-	var newData = {
-		query: query,
-		timestamp: firebase.database.ServerValue.TIMESTAMP
-	};
-
-	userSearchesRef.child(userKey).push(newData);
+	database.ref('allsearches/' + newSearchKey).set(newSearchData);
+	database.ref('usersearches/' + userKey + '/' + newSearchKey).set(newSearchData);
 }

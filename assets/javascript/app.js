@@ -12,8 +12,7 @@ $(document).ready(function(){
 		searchOMDBbyMovie(searchQuery);
 
 		// pushes search query into 'allsearches/' and to user's own search directory in 'usersearches/'
-		pushAllSearchesData(searchQuery);
-		pushUserSearchData(searchQuery);
+		writeSearchData(searchQuery);
 	});
 
 	// event listener for pressing ENTER key when in the input field
