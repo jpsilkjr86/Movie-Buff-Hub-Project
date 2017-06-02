@@ -8,3 +8,14 @@
     messagingSenderId: "905481455751"
   };
   firebase.initializeApp(config);
+  // this is firebase 
+
+  var database = firebase.database();
+
+  database.ref('allsearches').on('child_added', function(snapshot){
+    var newChild = snapshot.val();
+
+    $('#all-searches').append(newChild.query);
+    
+
+  });

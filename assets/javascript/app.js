@@ -10,6 +10,11 @@ $(document).ready(function(){
 		$('#main-search').val('');
 
 		searchOMDBbyMovie(searchQuery);
+
+		database.ref('allsearches/').push({
+			query: searchQuery,
+			timestamp: firebase.database.ServerValue.TIMESTAMP
+		});
 	});
 
 	// event listener for pressing ENTER key when in the input field
