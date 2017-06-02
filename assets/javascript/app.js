@@ -9,10 +9,14 @@ $(document).ready(function(){
 		// empties input field
 		$('#main-search').val('');
 
-		searchOMDBbyMovie(searchQuery);
+		// gets a database key (unique id) for logging this search entry to firebase
+		var newSearchKey = generateFirebaseSearchKey();
 
-		// pushes search query into 'allsearches/' and to user's own search directory in 'usersearches/'
-		writeSearchData(searchQuery);
+		// queries OMDB API and stores results onto firebase for convenient, persistent reference
+		searchOMDBbyMovie(searchQuery, newSearchKey);
+
+		// pushes data into 'allsearches/' and to user's own search directory in 'usersearches/'
+		writeSearchData(newSearchKey, searchQuery, 'movie');
 	});
 
 	// event listener for pressing ENTER key when in the input field
@@ -27,7 +31,14 @@ $(document).ready(function(){
 		var personQuery = $('#person-search').val().trim();
 		$('main-search').val('');
 
-		searchTMDBbyPerson(personQuery);
+		// gets a database key (unique id) for logging this search entry to firebase
+		var newSearchKey = generateFirebaseSearchKey();
+
+		// queries TMDB API and stores results onto firebase for convenient, persistent reference
+		searchTMDBbyPerson(personQuery, newSearchKey);
+
+		// pushes data into 'allsearches/' and to user's own search directory in 'usersearches/'
+		writeSearchData(newSearchKey, personQuery, 'person');
 	});
 
 

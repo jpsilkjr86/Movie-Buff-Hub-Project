@@ -1,7 +1,7 @@
 
 
-// old function for tmbd api key
-function searchTMDBbyPerson(queryTerm) {
+// function for querying tmbd api by person (actor, actress etc)
+function searchTMDBbyPerson(queryTerm, searchKey) {
 
 	var tmdbApiKey = '82f6be9756f8de0b7738603a7b3fab34';
 
@@ -14,12 +14,23 @@ function searchTMDBbyPerson(queryTerm) {
 		method: "GET",
 		url: queryURL
 	}).done(function(r){
-		console.log(r);
+		console.log(r.results[0]);
+
+		var searchResultsData = r.results[0];
+		var userKey = getUserKey();
+
+		// writes search results object to firebase 'allsearches' directory,
+		// reference depends on searchKey argument
+		database.ref('allsearches/' + searchKey).child('searchResults').set(searchResultsData);
+
+		// writes search results object to firebase 'usersearches' directory,
+		// reference depends on searchKey argument and userKey
+		database.ref('usersearches/' + userKey + '/' + searchKey).child('searchResults').set(searchResultsData);
 	});
 }
 
 // function for querying the omdb API using ajax
-function searchOMDBbyMovie(queryTerm) {
+function searchOMDBbyMovie(queryTerm, searchKey) {
 
 	var omdbApiKey = 'd20f646e';
 
@@ -33,5 +44,16 @@ function searchOMDBbyMovie(queryTerm) {
 		url: queryURL
 	}).done(function(r){
 		console.log(r);
+
+		var searchResultsData = r;
+		var userKey = getUserKey();
+
+		// writes search results object to firebase 'allsearches' directory,
+		// reference depends on searchKey argument
+		database.ref('allsearches/' + searchKey).child('searchResults').set(searchResultsData);
+
+		// writes search results object to firebase 'usersearches' directory,
+		// reference depends on searchKey argument and userKey
+		database.ref('usersearches/' + userKey + '/' + searchKey).child('searchResults').set(searchResultsData);		
 	});
 }
