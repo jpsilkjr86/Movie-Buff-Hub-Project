@@ -19,7 +19,7 @@ $(document).ready(function(){
 		writeSearchData(newSearchKey, searchQuery, 'movie');
 	});
 
-	// event listener for pressing ENTER key when in the input field
+	// event listener for pressing ENTER key when in #main-search input field
 	$('#main-search').on('keypress', function(event){
 		// if the key is ENTER, trigger 'click' event on #search-submit
 		if (event.which === 13) {$('#search-submit').trigger('click');}
@@ -29,7 +29,7 @@ $(document).ready(function(){
 	$('#person-submit').on('click', function(event){
 		event.preventDefault();
 		var personQuery = $('#person-search').val().trim();
-		$('main-search').val('');
+		$('#person-search').val('');
 
 		// gets a database key (unique id) for logging this search entry to firebase
 		var newSearchKey = generateFirebaseSearchKey();
@@ -39,6 +39,12 @@ $(document).ready(function(){
 
 		// pushes data into 'allsearches/' and to user's own search directory in 'usersearches/'
 		writeSearchData(newSearchKey, personQuery, 'person');
+	});
+
+	// event listener for pressing ENTER key when in #person-search input field
+	$('#person-search').on('keypress', function(event){
+		// if the key is ENTER, trigger 'click' event on #person-submit
+		if (event.which === 13) {$('#person-submit').trigger('click');}
 	});
 
 
