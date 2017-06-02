@@ -11,10 +11,9 @@ $(document).ready(function(){
 
 		searchOMDBbyMovie(searchQuery);
 
-		database.ref('allsearches/').push({
-			query: searchQuery,
-			timestamp: firebase.database.ServerValue.TIMESTAMP
-		});
+		// pushes search query into 'allsearches/' and to user's own search directory in 'usersearches/'
+		pushAllSearchesData(searchQuery);
+		pushUserSearchData(searchQuery);
 	});
 
 	// event listener for pressing ENTER key when in the input field
@@ -23,11 +22,12 @@ $(document).ready(function(){
 		if (event.which === 13) {$('#search-submit').trigger('click');}
 	});
 
+	// event listener for clicking submit on person search
 	$('#person-submit').on('click', function(event){
 		event.preventDefault();
 		var personQuery = $('#person-search').val().trim();
 		$('main-search').val('');
 
 		searchTMDBbyPerson(personQuery);
-	})
-});
+	});
+}); // end of document ready
