@@ -9,3 +9,9 @@ body {
 	height: 300px;
 	border: 1px solid black;
 }
+
+.poster {
+	width: 80px;
+}
+
+title + ' (' + year + ')'
