@@ -1,3 +1,11 @@
 body {
 	padding-top: 60px;
 }
+
+.movie-suggestion {
+	padding: 10px 20px;
+	float: left;
+	width: 200px;
+	height: 300px;
+	border: 1px solid black;
+}

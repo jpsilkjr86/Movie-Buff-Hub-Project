@@ -14,18 +14,20 @@ function searchTMDBbyPerson(queryTerm, searchKey) {
 		method: "GET",
 		url: queryURL
 	}).done(function(r){
-		console.log(r.results[0]);
+		if (r.results[0] != null) {
+			console.log(r.results[0]);
 
-		var searchResultsData = r.results[0];
-		var userKey = getUserKey();
+			var searchResultsData = r.results[0];
+			var userKey = getUserKey();
 
-		// writes search results object to firebase 'allsearches' directory,
-		// reference depends on searchKey argument
-		database.ref('allsearches/' + searchKey).child('searchResults').set(searchResultsData);
+			// writes search results object to firebase 'allsearches' directory,
+			// reference depends on searchKey argument
+			database.ref('allsearches/' + searchKey).child('searchResults').set(searchResultsData);
 
-		// writes search results object to firebase 'usersearches' directory,
-		// reference depends on searchKey argument and userKey
-		database.ref('usersearches/' + userKey + '/' + searchKey).child('searchResults').set(searchResultsData);
+			// writes search results object to firebase 'usersearches' directory,
+			// reference depends on searchKey argument and userKey
+			database.ref('usersearches/' + userKey + '/' + searchKey).child('searchResults').set(searchResultsData);
+		}
 	});
 }
 
@@ -43,17 +45,19 @@ function searchOMDBbyMovie(queryTerm, searchKey) {
 		method: "GET",
 		url: queryURL
 	}).done(function(r){
-		console.log(r);
+		if (r != null) {
+			console.log(r);
 
-		var searchResultsData = r;
-		var userKey = getUserKey();
+			var searchResultsData = r;
+			var userKey = getUserKey();
 
-		// writes search results object to firebase 'allsearches' directory,
-		// reference depends on searchKey argument
-		database.ref('allsearches/' + searchKey).child('searchResults').set(searchResultsData);
+			// writes search results object to firebase 'allsearches' directory,
+			// reference depends on searchKey argument
+			database.ref('allsearches/' + searchKey).child('searchResults').set(searchResultsData);
 
-		// writes search results object to firebase 'usersearches' directory,
-		// reference depends on searchKey argument and userKey
-		database.ref('usersearches/' + userKey + '/' + searchKey).child('searchResults').set(searchResultsData);		
+			// writes search results object to firebase 'usersearches' directory,
+			// reference depends on searchKey argument and userKey
+			database.ref('usersearches/' + userKey + '/' + searchKey).child('searchResults').set(searchResultsData);		
+		}
 	});
 }
