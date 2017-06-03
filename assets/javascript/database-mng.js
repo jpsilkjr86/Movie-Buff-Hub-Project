@@ -27,10 +27,11 @@ database.ref('allsearches').on('child_added', function(snapshot){
 // for index.html suggested movies 
 database.ref('allsearches').on('child_added', function(snapshot){
   // saves snapshot of child data as a more manageable variable
-  var newChild = snapshot.val();
-	if (newChild.queryType == 'movie') {
-		var movieDiv = $('<div>');
-		movieDiv.addClass('movie-suggestion');
+  snapshot.val();
+	if (snapshot.val().queryType == 'movie') {
+		var movie = snapshot.val().searchResults;
+    var movieDiv = getMovieSuggestionDiv(movie.Title, movie.Poster, movie.Year);
+    $('#suggestions-onindex').append(movieDiv);
 	}  
   
   
