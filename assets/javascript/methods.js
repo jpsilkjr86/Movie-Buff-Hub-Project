@@ -53,3 +53,7 @@ function writeSearchData(searchKey, query, queryType) {
 	database.ref('allsearches/' + searchKey).set(newSearchData);
 	database.ref('usersearches/' + userKey + '/' + searchKey).set(newSearchData);
 }
+
+// function for creating a movie-suggestion div
+// arguments: title, img url path, year released
+// return the finished div
