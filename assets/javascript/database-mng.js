@@ -17,6 +17,25 @@ database.ref('allsearches').on('child_added', function(snapshot){
   var newChild = snapshot.val();
 
   $('#all-searches').append(newChild.query);
+
+
   
 
 }); // end of allsearches child_added event listener
+
+
+// for index.html suggested movies 
+database.ref('allsearches').on('child_added', function(snapshot){
+  // saves snapshot of child data as a more manageable variable
+  var newChild = snapshot.val();
+	if (newChild.queryType == 'movie') {
+		var movieDiv = $('<div>');
+		movieDiv.addClass('movie-suggestion');
+	}  
+  
+  
+
+}); // end of allsearches child_added event listener
+
+
+
