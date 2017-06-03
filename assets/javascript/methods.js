@@ -40,16 +40,16 @@ function generateFirebaseSearchKey() {
 }
 
 // function to write search entry data to both 'allusers' and 'usersearches' firebase directories
-function writeSearchData(query) {
-	var newSearchKey = generateFirebaseSearchKey();
+function writeSearchData(searchKey, query, queryType) {
 	var userKey = getUserKey();
 	
 	var newSearchData = {
 		query: query,
+		queryType: queryType,
 		id: userKey,
 		timestamp: firebase.database.ServerValue.TIMESTAMP
 	};
 
-	database.ref('allsearches/' + newSearchKey).set(newSearchData);
-	database.ref('usersearches/' + userKey + '/' + newSearchKey).set(newSearchData);
+	database.ref('allsearches/' + searchKey).set(newSearchData);
+	database.ref('usersearches/' + userKey + '/' + searchKey).set(newSearchData);
 }
