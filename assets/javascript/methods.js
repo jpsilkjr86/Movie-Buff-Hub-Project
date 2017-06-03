@@ -57,3 +57,25 @@ function writeSearchData(searchKey, query, queryType) {
 // function for creating a movie-suggestion div
 // arguments: title, img url path, year released
 // return the finished div
+
+function getMovieSuggestionDiv (title, imgurl, year){
+	var div = $('<div>');
+
+	div.addClass('movie-suggestion');
+
+	var poster = $('<img>');
+
+	poster.addClass('center-block poster')
+		.attr('src', imgurl)
+		.appendTo(div);
+
+	var p = $('<p>');
+
+	p.text(title + ' (' +year +')') 
+	 .addClass('text-center')
+	 .appendTo(div);
+	 return div;
+}
+	
+
+
