@@ -31,10 +31,13 @@ database.ref('allsearches').on('child_added', function(snapshot){
 	if (snapshot.val().queryType == 'movie') {
 		var movie = snapshot.val().searchResults;
     var movieDiv = getMovieSuggestionDiv(movie.Title, movie.Poster, movie.Year);
-    $('#suggestions-onindex').append(movieDiv);
-	}  
-  
-  
+    $('#suggestions-onindex').prepend(movieDiv);
+	}
+  if (snapshot.val().queryType == 'person') {
+    var person = snapshot.val().searchResults;
+    var personDiv = getPersonSuggestionDiv(person.name, person.profile_path);
+    $('#suggestions-onindex').prepend(personDiv);
+  }  
 
 }); // end of allsearches child_added event listener
 
