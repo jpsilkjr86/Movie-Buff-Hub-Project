@@ -39,20 +39,20 @@ function generateFirebaseSearchKey() {
 	return gotKey;
 }
 
-// function to write search entry data to both 'allusers' and 'usersearches' firebase directories
-function writeSearchData(searchKey, query, queryType) {
-	var userKey = getUserKey();
+// // function to write search entry data to both 'allusers' and 'usersearches' firebase directories
+// function writeSearchData(searchKey, query, queryType) {
+// 	var userKey = getUserKey();
 	
-	var newSearchData = {
-		query: query,
-		queryType: queryType,
-		id: userKey,
-		timestamp: firebase.database.ServerValue.TIMESTAMP
-	};
+// 	var newSearchData = {
+// 		query: query,
+// 		queryType: queryType,
+// 		id: userKey,
+// 		timestamp: firebase.database.ServerValue.TIMESTAMP
+// 	};
 
-	database.ref('allsearches/' + searchKey).set(newSearchData);
-	database.ref('usersearches/' + userKey + '/' + searchKey).set(newSearchData);
-}
+// 	database.ref('allsearches/' + searchKey).set(newSearchData);
+// 	database.ref('usersearches/' + userKey + '/' + searchKey).set(newSearchData);
+// }
 
 // function for creating a movie-suggestion div
 // arguments: title, img url path, year released
@@ -85,6 +85,24 @@ function isSearchInputValid(query) {
 		return true;
 	}
 }
-	
+
+// object constructur that returns a search data object. some of the data object's
+// properties will be updated after the ajax request is complete.
+function searchDataObject(query, queryType) {
+	this.query = query;
+	this.queryType = queryType;
+	this.id = getUserKey();
+	this.timestamp = 0;
+	this.searchResults = {};
+}
+
+// function to write search entry data to both 'allusers' and 'usersearches' firebase directories
+function writeSearchData(searchObject, searchKey) {
+	// saves timestamp
+	searchObject.timestamp = firebase.database.ServerValue.TIMESTAMP;
+	// writes same data to two separate references in firebase
+	database.ref('allsearches/' + searchKey).set(searchObject);
+	database.ref('usersearches/' + searchObject.id + '/' + searchKey).set(searchObject);
+}
 
 

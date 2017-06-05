@@ -12,13 +12,13 @@ $(document).ready(function(){
 		// calls input validation function which returns bool
 		if (isSearchInputValid(searchQuery)) {
 			// gets a database key (unique id) for logging this search entry to firebase
-			var newSearchKey = generateFirebaseSearchKey();
+			var searchKey = generateFirebaseSearchKey();
+
+			// uses searchDataObject object constructor for setting initial data object values
+			var searchObject = new searchDataObject(searchQuery, 'movie');
 
 			// queries OMDB API and stores results onto firebase for convenient, persistent reference
-			searchOMDBbyMovie(searchQuery, newSearchKey);
-
-			// pushes data into 'allsearches/' and to user's own search directory in 'usersearches/'
-			writeSearchData(newSearchKey, searchQuery, 'movie');
+			searchOMDBbyMovie(searchObject, searchKey);
 		}			
 	});
 
@@ -35,15 +35,15 @@ $(document).ready(function(){
 		$('#person-search').val('');
 
 		// calls input validation function which returns bool
-		if (isSearchInputValid(searchQuery)) {
+		if (isSearchInputValid(personQuery)) {
 			// gets a database key (unique id) for logging this search entry to firebase
-			var newSearchKey = generateFirebaseSearchKey();
+			var searchKey = generateFirebaseSearchKey();
 
-			// queries TMDB API and stores results onto firebase for convenient, persistent reference
-			searchTMDBbyPerson(personQuery, newSearchKey);
+			// uses searchDataObject object constructor for setting initial data object values
+			var searchObject = new searchDataObject(personQuery, 'person');
 
-			// pushes data into 'allsearches/' and to user's own search directory in 'usersearches/'
-			writeSearchData(newSearchKey, personQuery, 'person');
+			// queries OMDB API and stores results onto firebase for convenient, persistent reference
+			searchTMDBbyPerson(searchObject, searchKey);
 		}			
 	});
 
