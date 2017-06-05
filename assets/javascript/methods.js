@@ -76,6 +76,15 @@ function getMovieSuggestionDiv (title, imgurl, year){
 	 .appendTo(div);
 	 return div;
 }
+
+function isSearchInputValid(query) {
+	if (query == '' || query == null) {
+		return false;
+	}
+	if (query != '' && query != null) {
+		return true;
+	}
+}
 	
 
 
