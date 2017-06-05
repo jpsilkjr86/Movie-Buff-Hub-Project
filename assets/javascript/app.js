@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	// collapse functionality for side nav on mobile screens
+	$(".button-collapse").sideNav();
 	// event listener for clicking submit
 	$('#search-submit').on('click', function(event){
 		// prevents page from auto-reloading
