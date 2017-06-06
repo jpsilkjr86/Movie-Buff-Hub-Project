@@ -8,22 +8,20 @@ body {
 	background: #B82601;
 }
 
-.indicators {
-	margin-top: 10px;
-}
-
-.movie-suggestion {
+.movie-suggestion, .person-suggestion {
 	padding: 10px 20px;
 	float: left;
 	width: 200px;
 	height: 200px;
-	border: 1px solid black;
 }
 
-.poster {
+.poster, .profile {
 	width: 80px;
 }
 
 .input-field {
 	margin-bottom: 30px;
+}
+#my-modal-actor, #my-modal-movie {
+	color: black;
 }
