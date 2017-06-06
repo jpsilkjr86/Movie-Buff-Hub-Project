@@ -16,11 +16,11 @@ function searchTMDBbyPerson(searchObject, searchKey) {
 	}).done(function(r){
 		if (r.results[0] != null) {
 			console.log(r.results[0]);
-			// saves results in searchObject.searchResults
-			searchObject.searchResults = r.results[0];
+			// saves results in searchObject.results
+			searchObject.results = r.results[0];
 			// adds head to profile_path
-			searchObject.searchResults.profile_path = 
-			'https://image.tmdb.org/t/p/w300' + searchObject.searchResults.profile_path;
+			searchObject.results.profile_path = 
+			'https://image.tmdb.org/t/p/w300' + searchObject.results.profile_path;
 			// is this the head path to the profile_path image url? https://image.tmdb.org/t/p/w300/
 			// writes search results to firebase
 			writeSearchData(searchObject, searchKey);
@@ -44,8 +44,8 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 	}).done(function(r){
 		if (r != null) {
 			console.log(r);
-			// saves results in searchObject.searchResults
-			searchObject.searchResults = r;
+			// saves results in searchObject.results
+			searchObject.results = r;
 			// writes search results to firebase
 			writeSearchData(searchObject, searchKey);
 		}

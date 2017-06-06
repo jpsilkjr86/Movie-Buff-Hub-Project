@@ -23,7 +23,7 @@ $(document).ready(function(){
 
 			// queries OMDB API and stores results onto firebase for convenient, persistent reference
 			searchOMDBbyMovie(searchObject, searchKey);
-		}			
+		}	
 	});
 
 	// event listener for pressing ENTER key when in #main-search input field
