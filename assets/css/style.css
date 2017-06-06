@@ -8,10 +8,6 @@ body {
 	background: #B82601;
 }
 
-.indicators {
-	margin-top: 10px;
-}
-
 .movie-suggestion, .person-suggestion {
 	padding: 10px 20px;
 	float: left;
