@@ -22,12 +22,6 @@ $(document).ready(function(){
 		writeSearchData(newSearchKey, searchQuery, 'movie');
 	});
 
-	// event listener for pressing ENTER key when in #main-search input field
-	// $('#main-search').on('keypress', function(event){
-	// 	// if the key is ENTER, trigger 'click' event on #search-submit
-	// 	if (event.which === 13) {$('#search-submit').trigger('click');}
-	// });
-
 	// event listener for clicking submit on person search
 	$('#person-submit').on('click', function(event){
 		event.preventDefault();
@@ -43,12 +37,6 @@ $(document).ready(function(){
 		// pushes data into 'allsearches/' and to user's own search directory in 'usersearches/'
 		writeSearchData(newSearchKey, personQuery, 'person');
 	});
-
-	// event listener for pressing ENTER key when in #person-search input field
-	// $('#person-search').on('keypress', function(event){
-	// 	// if the key is ENTER, trigger 'click' event on #person-submit
-	// 	if (event.which === 13) {$('#person-submit').trigger('click');}
-	// });
 
 
 	// event listeners for data-management during development phase - DELETE BEFORE DEPLOYMENT
