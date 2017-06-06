@@ -1,7 +1,10 @@
 $(document).ready(function(){
+	// initialize modals
+	$('.modal').modal();
+	// collapse functionality for side nav on mobile screens
+	$(".button-collapse").sideNav();
 	displayPopular();
 	// enable sidebar when the menu is collapsed
-	$(".button-collapse").sideNav();
 	// event listener for clicking submit
 	$('#search-submit').on('click', function(event){
 		// prevents page from auto-reloading
@@ -22,8 +25,13 @@ $(document).ready(function(){
 
 			// queries OMDB API and stores results onto firebase for convenient, persistent reference
 			searchOMDBbyMovie(searchObject, searchKey);
+		}  
+		else {
+			$('#my-modal-movie').modal('open');
 		}			
 	});
+
+
 
 	// event listener for pressing ENTER key when in #main-search input field
 	$('#main-search').on('keypress', function(event){
@@ -47,14 +55,18 @@ $(document).ready(function(){
 
 			// queries OMDB API and stores results onto firebase for convenient, persistent reference
 			searchTMDBbyPerson(searchObject, searchKey);
-		}			
+		}	
+		else{$('#my-modal-actor').modal('open');}		
 	});
 
 	// event listener for pressing ENTER key when in #person-search input field
 	$('#person-search').on('keypress', function(event){
 		// if the key is ENTER, trigger 'click' event on #person-submit
 		if (event.which === 13) {$('#person-submit').trigger('click');}
+		
 	});
+
+
 
 
 	// event listeners for data-management during development phase - DELETE BEFORE DEPLOYMENT
