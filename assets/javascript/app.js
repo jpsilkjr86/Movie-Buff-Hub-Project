@@ -1,10 +1,10 @@
 $(document).ready(function(){
+	// initialize modals
 	$('.modal').modal();
-	
 	// collapse functionality for side nav on mobile screens
 	$(".button-collapse").sideNav();
-	// initialize carousel
-	// $('.carousel').carousel();
+	displayPopular();
+	// enable sidebar when the menu is collapsed
 	// event listener for clicking submit
 	$('#search-submit').on('click', function(event){
 		// prevents page from auto-reloading
