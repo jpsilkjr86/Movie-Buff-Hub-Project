@@ -26,3 +26,6 @@ body {
 .input-field {
 	margin-bottom: 30px;
 }
+#my-modal-actor, #my-modal-movie {
+	color: black;
+}
