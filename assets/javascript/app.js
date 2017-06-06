@@ -26,10 +26,10 @@ $(document).ready(function(){
 	});
 
 	// event listener for pressing ENTER key when in #main-search input field
-	// $('#main-search').on('keypress', function(event){
-	// 	// if the key is ENTER, trigger 'click' event on #search-submit
-	// 	if (event.which === 13) {$('#search-submit').trigger('click');}
-	// });
+	$('#main-search').on('keypress', function(event){
+		// if the key is ENTER, trigger 'click' event on #search-submit
+		if (event.which === 13) {$('#search-submit').trigger('click');}
+	});
 
 	// event listener for clicking submit on person search
 	$('#person-submit').on('click', function(event){
@@ -51,10 +51,10 @@ $(document).ready(function(){
 	});
 
 	// event listener for pressing ENTER key when in #person-search input field
-	// $('#person-search').on('keypress', function(event){
-	// 	// if the key is ENTER, trigger 'click' event on #person-submit
-	// 	if (event.which === 13) {$('#person-submit').trigger('click');}
-	// });
+	$('#person-search').on('keypress', function(event){
+		// if the key is ENTER, trigger 'click' event on #person-submit
+		if (event.which === 13) {$('#person-submit').trigger('click');}
+	});
 
 
 	// event listeners for data-management during development phase - DELETE BEFORE DEPLOYMENT
