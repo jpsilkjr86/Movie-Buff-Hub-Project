@@ -39,26 +39,10 @@ function generateFirebaseSearchKey() {
 	return gotKey;
 }
 
-// function to write search entry data to both 'allusers' and 'usersearches' firebase directories
-function writeSearchData(searchKey, query, queryType) {
-	var userKey = getUserKey();
-	
-	var newSearchData = {
-		query: query,
-		queryType: queryType,
-		id: userKey,
-		timestamp: firebase.database.ServerValue.TIMESTAMP
-	};
-
-	database.ref('allsearches/' + searchKey).set(newSearchData);
-	database.ref('usersearches/' + userKey + '/' + searchKey).set(newSearchData);
-}
-
 // function for creating a movie-suggestion div
 // arguments: title, img url path, year released
-// return the finished div
-
-function getMovieSuggestionDiv (title, imgurl, year){
+// returns the finished div
+function getMovieSuggestionDiv (title, imgURL, year){
 	var div = $('<div>');
 
 	div.addClass('movie-suggestion');
@@ -66,16 +50,65 @@ function getMovieSuggestionDiv (title, imgurl, year){
 	var poster = $('<img>');
 
 	poster.addClass('center-block poster')
-		.attr('src', imgurl)
+		.attr('src', imgURL)
 		.appendTo(div);
 
 	var p = $('<p>');
 
-	p.text(title + ' (' +year +')') 
+	p.text(title + ' (' + year + ')') 
 	 .addClass('text-center')
 	 .appendTo(div);
+
 	 return div;
 }
-	
+
+// similar to getMovieSuggestionDiv but with person profile
+function getPersonSuggestionDiv (name, imgURL) {
+	var div = $('<div>');
+
+	div.addClass('person-suggestion');
+
+	var profile = $('<img>');
+
+	profile.addClass('center-block profile')
+		.attr('src', imgURL)
+		.appendTo(div);
+
+	var p = $('<p>');
+
+	p.text(name) 
+	 .addClass('text-center')
+	 .appendTo(div);
+
+	 return div;
+}
+
+function isSearchInputValid(query) {
+	if (query == '' || query == null) {
+		return false;
+	}
+	if (query != '' && query != null) {
+		return true;
+	}
+}
+
+// object constructur that returns a search data object. some of the data object's
+// properties will be updated after the ajax request is complete.
+function searchDataObject(query, queryType) {
+	this.query = query;
+	this.queryType = queryType;
+	this.id = getUserKey();
+	this.timestamp = 0;
+	this.results = {};
+}
+
+// function to write search entry data to both 'allusers' and 'usersearches' firebase directories
+function writeSearchData(searchObject, searchKey) {
+	// saves timestamp
+	searchObject.timestamp = firebase.database.ServerValue.TIMESTAMP;
+	// writes same data to two separate references in firebase
+	database.ref('allsearches/' + searchKey).set(searchObject);
+	database.ref('usersearches/' + searchObject.id + '/' + searchKey).set(searchObject);
+}
 
 
