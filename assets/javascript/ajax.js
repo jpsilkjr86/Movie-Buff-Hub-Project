@@ -14,6 +14,7 @@ function searchTMDBbyPerson(searchObject, searchKey) {
 		method: "GET",
 		url: queryURL
 	}).done(function(r){
+		console.log(r);
 		if (r.results[0] != null) {
 			console.log(r.results[0]);
 			// saves results in searchObject.results
@@ -28,14 +29,15 @@ function searchTMDBbyPerson(searchObject, searchKey) {
 	});
 }
 
-function displayPopular () {var settings = {
+function displayPopular () {
+	var settings = {
 	  "async": true,
 	  "crossDomain": true,
 	  "url": "https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=82f6be9756f8de0b7738603a7b3fab34",
 	  "method": "GET",
 	  "headers": {},
 	  "data": "{}"
-	}
+	};
 
 	$.ajax(settings).done(function (response) {
 	  for (i = 0; i < response.results.length; i++) {
@@ -52,7 +54,7 @@ function displayPopular () {var settings = {
 	  	li.append(div);
 	  	
 	  	div.addClass("caption " + captions[c]);
-	  	div.append(h3)
+	  	div.append(h3);
 	  	h3.text(response.results[i].title);
 	  }
 	  $('.slider').slider({indicators: false});
@@ -73,6 +75,7 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 		method: "GET",
 		url: queryURL
 	}).done(function(r){
+		console.log(r);
 		if (r != null) {
 			console.log(r);
 			// saves results in searchObject.results

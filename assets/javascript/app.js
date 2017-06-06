@@ -26,9 +26,7 @@ $(document).ready(function(){
 			// queries OMDB API and stores results onto firebase for convenient, persistent reference
 			searchOMDBbyMovie(searchObject, searchKey);
 		}  
-		else {
-			$('#my-modal-movie').modal('open');
-		}			
+		else {$('#my-modal-movie').modal('open');}			
 	});
 
 
