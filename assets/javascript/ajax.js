@@ -31,6 +31,37 @@ function searchTMDBbyPerson(queryTerm, searchKey) {
 	});
 }
 
+function displayPopular () {var settings = {
+	  "async": true,
+	  "crossDomain": true,
+	  "url": "https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=82f6be9756f8de0b7738603a7b3fab34",
+	  "method": "GET",
+	  "headers": {},
+	  "data": "{}"
+	}
+
+	$.ajax(settings).done(function (response) {
+	  for (i = 0; i < response.results.length; i++) {
+	  	var li = $("<li>");
+	  	var img = $("<img>");
+	  	var div = $("<div>");
+	  	var h3 = $("<h3>");
+	  	var c = Math.floor(Math.random() * 3);
+	  	var captions = ["center-align", "left-align", "right-align"];
+	  	$("#backgrounds").append(li);
+	  	li.append(img);
+	  	li.attr("style", "opacity: 0; transform: translateX(0px) translateY(0px);")
+	  	img.attr("src", "https://image.tmdb.org/t/p/w1280" + response.results[i].backdrop_path);
+	  	li.append(div);
+	  	
+	  	div.addClass("caption " + captions[c]);
+	  	div.append(h3)
+	  	h3.text(response.results[i].title);
+	  }
+	  $('.slider').slider({indicators: false});
+	});
+}
+
 // function for querying the omdb API using ajax
 function searchOMDBbyMovie(queryTerm, searchKey) {
 

@@ -1,5 +1,15 @@
 body {
-	padding-top: 60px;
+	/*padding-top: 60px;*/
+	color: white;
+	background: black;
+}
+
+.btn {
+	background: #B82601;
+}
+
+.indicators {
+	margin-top: 10px;
 }
 
 .movie-suggestion {
@@ -12,4 +22,8 @@ body {
 
 .poster {
 	width: 80px;
+}
+
+.input-field {
+	margin-bottom: 30px;
 }
