@@ -11,24 +11,22 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-// firebase database event listener for child_added in allsearches directory
+// child_added listener for history.html.
 database.ref('allsearches').on('child_added', function(snapshot){
   // saves snapshot of child data as a more manageable variable
   var newChild = snapshot.val();
 
   $('#all-searches').append(newChild.query);
 
-
-  
-
 }); // end of allsearches child_added event listener
 
+
+// Functionality for dynamically generating a MaterializeCSS carousel on index.html
 var carouselIndex = 0;
 var carouselLoadTimeout;
 var isCarouselActive = false;
-// for index.html suggested movies 
+
 database.ref('allsearches').on('child_added', function(snapshot){
-  console.log(snapshot.val());
   // if it is either a movie or person AND if the carousel has not yet been activated
   if ((snapshot.val().queryType == 'movie' || snapshot.val().queryType == 'person') && !isCarouselActive) {
     // increments carousel index for the purpose of telling the app which place to put the new images

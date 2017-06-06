@@ -29,8 +29,6 @@ $(document).ready(function(){
 		else {$('#my-modal-movie').modal('open');}			
 	});
 
-
-
 	// event listener for pressing ENTER key when in #main-search input field
 	$('#main-search').on('keypress', function(event){
 		// if the key is ENTER, trigger 'click' event on #search-submit
@@ -54,14 +52,13 @@ $(document).ready(function(){
 			// queries OMDB API and stores results onto firebase for convenient, persistent reference
 			searchTMDBbyPerson(searchObject, searchKey);
 		}	
-		else{$('#my-modal-actor').modal('open');}		
+		else {$('#my-modal-actor').modal('open');}	
 	});
 
 	// event listener for pressing ENTER key when in #person-search input field
 	$('#person-search').on('keypress', function(event){
 		// if the key is ENTER, trigger 'click' event on #person-submit
-		if (event.which === 13) {$('#person-submit').trigger('click');}
-		
+		if (event.which === 13) {$('#person-submit').trigger('click');}		
 	});
 
 

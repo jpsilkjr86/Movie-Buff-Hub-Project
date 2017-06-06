@@ -14,7 +14,6 @@ function searchTMDBbyPerson(searchObject, searchKey) {
 		method: "GET",
 		url: queryURL
 	}).done(function(r){
-		console.log(r);
 		if (r.results[0] != null) {
 			console.log(r.results[0]);
 			// saves results in searchObject.results
@@ -75,7 +74,6 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 		method: "GET",
 		url: queryURL
 	}).done(function(r){
-		console.log(r);
 		if (r != null) {
 			console.log(r);
 			// saves results in searchObject.results
