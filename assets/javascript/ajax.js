@@ -31,7 +31,8 @@ function searchTMDBbyPerson(queryTerm, searchKey) {
 	});
 }
 
-function displayPopular () {var settings = {
+function displayPopular () {
+	var settings = {
 	  "async": true,
 	  "crossDomain": true,
 	  "url": "https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=82f6be9756f8de0b7738603a7b3fab34",
@@ -50,7 +51,6 @@ function displayPopular () {var settings = {
 	  	var captions = ["center-align", "left-align", "right-align"];
 	  	$("#backgrounds").append(li);
 	  	li.append(img);
-	  	li.attr("style", "opacity: 0; transform: translateX(0px) translateY(0px);")
 	  	img.attr("src", "https://image.tmdb.org/t/p/w1280" + response.results[i].backdrop_path);
 	  	li.append(div);
 	  	
