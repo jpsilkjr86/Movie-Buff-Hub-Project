@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	displayPopular();
+	// enable sidebar when the menu is collapsed
+	$(".button-collapse").sideNav();
 	// event listener for clicking submit
 	$('#search-submit').on('click', function(event){
 		// prevents page from auto-reloading
