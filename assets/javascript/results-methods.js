@@ -32,37 +32,36 @@ function getMainMovieCard (result) {
 	return card;
 }
 
-// function getMainMovieCard (result) {
+function getMainPersonCard (result) {
 
-// 	var card = $('<div class="card blue-grey darken-1">');
+	var card = $('<div class="card horizontal blue-grey darken-4">');
 
-// 	var cardContent = $('<div class="card-content white-text">')
+	var cardImage = $('<div class="card-image">');
+	var profile = $('<img>');
+	profile.attr('src', result.profile_path)
+		.attr('alt', result.name + ' Profile')
+		.appendTo(cardImage);
 
-// 	var r1 = $('<div class="row">');
-// 	var r1c1 = $('<div class="col s6">');
-// 	var r1c2 = $('<div class="col s6">');
+	var cardStacked = $('<div class="card-stacked">');
 
-// 	var poster = $('<img>');
+	var cardContent = $('<div class="card-content">');
+	var heading = $('<h4>');
+	heading.text(result.name)
+		.appendTo(cardContent);
+	var subTitle = $('<h5>');
+	subTitle.html('Known for:<br>' 
+				+ result.known_for[0].original_title + '<br>'
+				+ result.known_for[1].original_title + '<br>'
+				+ result.known_for[2].original_title)
+			.appendTo(cardContent);
 
-// 	poster.attr('src', result.Poster)
-// 		.attr('alt', result.Title + ' Poster')
-// 		.addClass('responsive-img')
-// 		.css('padding', '10px')
-// 		.appendTo(r1c1);
+	var cardAction = $('<div class="card-action">');
+	var link = $('<a href="#">');
+	link.text('Some action here (website? button?)').appendTo(cardAction);
 
-// 	var title = $('<h4>');
-// 	title.text(result.Title)
-// 		.appendTo(r1c2);
+	cardStacked.append(cardContent).append(cardAction);
 
-// 	var subTitle = $('<h5>');
-// 	subTitle.html('Year Released: ' + result.Year + 
-// 				'<br>Directed by: ' + result.Director + 
-// 				'<br>Main Cast: ' + result.Actors)
-// 			.appendTo(r1c2);
+	card.append(cardImage).append(cardStacked);
 
-// 	r1.append(r1c1).append(r1c2).appendTo(cardContent);
-
-// 	cardContent.appendTo(card);
-
-// 	return card;
-// }
+	return card;
+}
