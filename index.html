@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Movie Buff Hub - Home</title>
 	<!--Import Google Icon Font-->
-	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Compiled and minified CSS for Materialize -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 	<!-- Link to Custom Style Sheets-->
@@ -63,18 +63,20 @@
 		</div> <!-- end of row -->
     
     	<!-- Slider -->
-		<div class="row">
-			<div class="col s12">
-				<div class="slider left" style="max-width: 800px;">
-					<ul class="slides" id="backgrounds"></ul>
+    	<div class="row">
+    		<h4>Popular Movies Right Now...</h4>
+    		<div class="col offset-l2 s12 l8">
+				<div class="slider">
+					<ul class="slides" id="backgrounds">
+				  	</ul>
 				</div>
 			</div>
-		</div> <!-- end of row -->
-
+		</div>
 		<!-- Carousel -->
 		<div class="row">
-			<div class="col s12">
-				<h5 class="center-align">Other Users Have Recently Viewed...</h5>
+			<h4>Other Users Have Recently Viewed...</h4>
+			<div class="col offset-l1 s12 l10">				
+				<!-- <div id="suggestions-onindex"> -->
 				<div class="carousel"></div>
 			</div>
 		</div> <!-- end of row -->
