@@ -4,11 +4,14 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Movie Buff Hub - History</title>
-	<!-- Link to jQuery for .js Files -->
-	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-	<!-- Link to Bootstrap & Custom Style Sheets-->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Compiled and minified CSS for Materialize -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+	<!-- Link to Custom Style Sheets-->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">	
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Added the below script references to get the navbar collapse to work -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -16,27 +19,28 @@
 </head>
 <body>
 	<!-- Top-Floating Nav Bar -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-film"></span>  Movie Buff Hub!</a>
-			<!-- collapse bars for when viewport is too small -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-				</button>
-			</div>
-			<!-- Wrap in collapse navbar div for mobile responsiveness -->
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav navbar-right">
-				  <li role="presentation"><a href="index.html">Home</a></li>
-				  <li role="presentation" class="active"><a href="#">History</a></li>
-				  <li role="presentation"><a href="about.html">About Us</a></li>
+	<nav>
+		<div class="nav-wrapper deep-orange darken-4">
+			<div class="container">
+				<a class="brand-logo" href="index.html"><i class="material-icons">movie</i>  Movie Buff Hub!</a>
+				<!-- collapse bars for when viewport is too small -->
+				<a href="#" data-activates="sidebar" class="button-collapse"><i class="material-icons">menu</i></a>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="search.html">Search</a></li>
+					<li><a href="history.html">History</a></li>
+					<li><a href="about.html">About Us</a></li>
 				</ul>
-			</div> <!-- end of navbar-collapse -->
-		</div> <!-- end of navbar container -->
+				<ul class="side-nav" id="sidebar">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="search.html">Search</a></li>
+					<li><a href="history.html">History</a></li>
+					<li><a href="about.html">About Us</a></li>
+				</ul>
+			</div> <!-- end of container -->
+		</div> <!-- end of nav-wrapper -->
 	</nav> <!-- end of nav -->
+
 
 	<!-- Main Content Container -->
 	<div class="container">	
