@@ -16,20 +16,22 @@
 	<!-- Top-Floating Nav Bar -->
 	<nav>
 		<div class="nav-wrapper deep-orange darken-4">
-			<a class="brand-logo" href="index.html"><i class="material-icons">movie</i>  Movie Buff Hub!</a>
-			<!-- collapse bars for when viewport is too small -->
-			<a href="#" data-activates="sidebar" class="button-collapse"><i class="material-icons">menu</i></a>
-			<ul class="right hide-on-med-and-down">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="history.html">History</a></li>
-				<li><a href="about.html">About Us</a></li>
-			</ul>
-			<ul class="side-nav" id="sidebar">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="history.html">History</a></li>
-				<li><a href="about.html">About Us</a></li>
-			</ul>
-		</div> <!-- end of navbar container -->
+			<div class="container">
+				<a class="brand-logo" href="index.html"><i class="material-icons">movie</i>  Movie Buff Hub!</a>
+				<!-- collapse bars for when viewport is too small -->
+				<a href="#" data-activates="sidebar" class="button-collapse"><i class="material-icons">menu</i></a>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="history.html">History</a></li>
+					<li><a href="about.html">About Us</a></li>
+				</ul>
+				<ul class="side-nav" id="sidebar">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="history.html">History</a></li>
+					<li><a href="about.html">About Us</a></li>
+				</ul>
+			</div> <!-- end of container -->
+		</div> <!-- end of nav-wrapper -->
 	</nav> <!-- end of nav -->
 
 	<!-- Main Content Container -->
@@ -76,8 +78,7 @@
 			<div class="col offset-l1 s12 l10">				
 				<!-- <div id="suggestions-onindex"> -->
 				<div class="carousel"></div>
-				<!-- </div> -->
-			</div> <!-- end of col -->				
+			</div>
 		</div> <!-- end of row -->
 
 		<!-- Modal error msg for movie input -->
@@ -86,7 +87,7 @@
 	      		<h4>Try again!</h4>
 	      		<p>Sorry that's not a movie...</p>
 	      	</div>
-	    </div>
+	    </div> <!-- end of modal -->
 
 	    <!-- Modal error msg for person input -->
 	    <div id="my-modal-actor" class="modal">
@@ -94,7 +95,7 @@
 	      		<h4>Try Again!</h4>
 	      		<p>Sorry that's not a real actor...</p>
 	      	</div>
-	    </div>
+	    </div> <!-- end of modal -->
 	</div> <!-- end of container -->
 
 	<!-- Links to our project's .js files -->
