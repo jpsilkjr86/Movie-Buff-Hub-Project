@@ -48,7 +48,6 @@ function displayPopular () {
 	  	var captions = ["center-align", "left-align", "right-align"];
 	  	$("#backgrounds").append(li);
 	  	li.append(img);
-	  	li.attr("style", "opacity: 0; transform: translateX(0px) translateY(0px);")
 	  	img.attr("src", "https://image.tmdb.org/t/p/w1280" + response.results[i].backdrop_path);
 	  	li.append(div);
 	  	
