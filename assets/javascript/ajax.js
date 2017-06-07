@@ -79,6 +79,10 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 			searchObject.results = r;
 			// writes search results to firebase
 			writeSearchData(searchObject, searchKey);
+
+			// testing appending of main movie card
+			var mainMovieCard = getMainMovieCard(searchObject.results);
+			$('#main-result').html(mainMovieCard);
 		}
 	});
 }
