@@ -1,6 +1,6 @@
 
 function getMainMovieCard (result) {
-
+	console.log(getMainMovieCard);
 	var card = $('<div class="card horizontal blue-grey darken-4">');
 
 	var cardImage = $('<div class="card-image">');
@@ -21,11 +21,7 @@ function getMainMovieCard (result) {
 				'<br>Main Cast: ' + result.Actors)
 			.appendTo(cardContent);
 
-	var cardAction = $('<div class="card-action">');
-	var link = $('<a href="#">');
-	link.text('Some action here (website? button?)').appendTo(cardAction);
-
-	cardStacked.append(cardContent).append(cardAction);
+	cardStacked.append(cardContent);
 
 	card.append(cardImage).append(cardStacked);
 

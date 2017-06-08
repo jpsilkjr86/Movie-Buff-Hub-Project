@@ -155,3 +155,37 @@ function getCarouselIndex() {
 			break;
 	}
 }
+
+function getSmallMovieCard(result) {
+	
+	var card = $('<div class="card horizontal blue-grey darken-4">');
+
+	var cardImage = $('<div class="card-image">');
+	var poster = $('<img>');
+	poster.attr('src', result.Poster)
+		.attr('alt', result.Title + ' Poster')
+		.appendTo(cardImage);
+
+	var cardStacked = $('<div class="card-stacked">');
+
+	var cardContent = $('<div class="card-content">');
+
+	var title = $('<h3>');
+	title.text(result.Title)
+		.appendTo(cardContent);
+	var subTitle = $('<p>');
+	subTitle.html('Year released: ' + result.Year+
+				'Plot: ' + result.Plot)
+			.appendTo(cardContent);
+
+	var cardAction = $('<div class="card-action">');
+	var link = $('<a href="#">');
+	link.text('Some action here (website? button?)').appendTo(cardAction);
+
+	cardStacked.append(cardContent).append(cardAction);
+
+	card.append(cardImage).append(cardStacked);
+
+	return card;
+}
+

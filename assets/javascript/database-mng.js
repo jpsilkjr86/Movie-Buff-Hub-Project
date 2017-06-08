@@ -44,7 +44,7 @@ database.ref('allsearches').on('child_added', function(snapshot){
 
 
 // child_added listener for history.html.
-database.ref('usersearches/' + getUserKey() + '/').on('child_added', function(snapshot){
+database.ref('usersearches/' + getUserKey()).on('child_added', function(snapshot){
   // saves snapshot of child data as a more manageable variable
   var search = snapshot.val();
   console.log(search);
