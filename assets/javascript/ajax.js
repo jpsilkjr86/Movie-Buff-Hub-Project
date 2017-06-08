@@ -24,6 +24,10 @@ function searchTMDBbyPerson(searchObject, searchKey) {
 			// is this the head path to the profile_path image url? https://image.tmdb.org/t/p/w300/
 			// writes search results to firebase
 			writeSearchData(searchObject, searchKey);
+
+			// testing appending of main person card
+			var mainPersonCard = getMainPersonCard(searchObject.results);
+			$('#main-result').html(mainPersonCard);
 		}
 	});
 }
@@ -79,6 +83,10 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 			searchObject.results = r;
 			// writes search results to firebase
 			writeSearchData(searchObject, searchKey);
+
+			// testing appending of main movie card
+			var mainMovieCard = getMainMovieCard(searchObject.results);
+			$('#main-result').html(mainMovieCard);
 		}
 	});
 }

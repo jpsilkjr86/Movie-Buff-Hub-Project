@@ -19,9 +19,10 @@ h3 {
 	height: 200px;
 }
 
-.poster, .profile {
-	width: 80px;
-}
+/*.poster, .profile {
+	width: 20%;
+	padding: 10px;
+}*/
 
 .input-field {
 	margin-bottom: 30px;
@@ -29,3 +30,8 @@ h3 {
 #my-modal-actor, #my-modal-movie {
 	color: black;
 }
+
+/*.main-movie-content {
+	color: black;
+	text-align: center;
+}*/
