@@ -2,8 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Movie Buff Hub - About</title>
+	<title>Movie Buff Hub - About Us</title>
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Compiled and minified CSS for Materialize -->
@@ -12,10 +11,6 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">	
 	<!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Added the below script references to get the navbar collapse to work -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  	<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
 </head>
 <body>
 	<!-- Top-Floating Nav Bar -->
@@ -54,11 +49,19 @@
 		</div> <!-- end of panel default -->
 	</div> <!-- end of main content container -->
 
-	<!-- Links to our project's .js files -->
-	<script src="assets/javascript/database-mng.js"></script>
-	<script src="assets/javascript/methods.js"></script>
+	<!-- Links to external .js files -->
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+	<!-- Link to client-side methods first, as the rest will make use of them -->
+	<script src="assets/javascript/client-methods.js"></script>
 	<script src="assets/javascript/results-methods.js"></script>
+	<!-- Link to database event listeners and server-side methods -->
+	<script src="assets/javascript/database-mng.js"></script>
+	<script src="assets/javascript/server-methods.js"></script>
+	<!-- Link to ajax methods -->
 	<script src="assets/javascript/ajax.js"></script>
+	<!-- Link to document event listeners -->
 	<script src="assets/javascript/app.js"></script>
 
 </body>
