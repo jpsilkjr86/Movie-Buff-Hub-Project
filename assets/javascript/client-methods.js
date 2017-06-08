@@ -175,7 +175,7 @@ function getSmallMovieCard(result) {
 		.appendTo(cardContent);
 	var subTitle = $('<p>');
 	subTitle.html('Year released: ' + result.Year+
-				'Plot: ' + result.Plot)
+				' Plot: ' + result.Plot)
 			.appendTo(cardContent);
 
 	var cardAction = $('<div class="card-action">');

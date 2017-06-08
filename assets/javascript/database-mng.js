@@ -49,6 +49,11 @@ database.ref('usersearches/' + getUserKey()).on('child_added', function(snapshot
   var search = snapshot.val();
   console.log(search);
 
+  if (search.queryType === 'movie') {
+    var smallMovieCard = getSmallMovieCard(search.results);
+    $('#search-history').append(smallMovieCard);
+  }  
+
   
 }); // end of allsearches child_added event listener
 
