@@ -11,16 +11,6 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-// child_added listener for history.html.
-database.ref('allsearches').on('child_added', function(snapshot){
-  // saves snapshot of child data as a more manageable variable
-  var newChild = snapshot.val();
-
-  $('#all-searches').append(newChild.query);
-
-}); // end of allsearches child_added event listener
-
-
 // Functionality for dynamically generating a MaterializeCSS carousel on index.html
 var carouselIndex = 0;
 var carouselLoadTimeout;
@@ -53,4 +43,12 @@ database.ref('allsearches').on('child_added', function(snapshot){
 }); // end of allsearches child_added event listener
 
 
+// child_added listener for history.html.
+database.ref('usersearches/' + getUserKey() + '/').on('child_added', function(snapshot){
+  // saves snapshot of child data as a more manageable variable
+  var search = snapshot.val();
+  console.log(search);
+
+  
+}); // end of allsearches child_added event listener
 
