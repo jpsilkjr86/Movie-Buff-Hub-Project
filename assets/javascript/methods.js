@@ -85,10 +85,10 @@ function getPersonSuggestionDiv (name, imgURL) {
 
 function isSearchInputValid(query) {
 	if (query == '' || query == null) {
-		return false;
+		console.log(false); return false;
 	}
 	if (query != '' && query != null) {
-		return true;
+		console.log(true); return true;
 	}
 }
 

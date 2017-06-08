@@ -4,12 +4,12 @@ body {
 	background: black;
 }
 
-.btn {
-	background: #B82601;
+h3 {
+	text-shadow: black 0.1em 0.1em 0.2em
 }
 
-.indicators {
-	margin-top: 10px;
+.btn {
+	background: #B82601;
 }
 
 .movie-suggestion, .person-suggestion {
