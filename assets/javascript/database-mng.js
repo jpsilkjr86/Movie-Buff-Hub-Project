@@ -62,13 +62,13 @@ database.ref('usersearches/' + getUserKey() + '/lastsearch').on('value', functio
   var search = snapshot.val();
   if (search.queryType === 'movie') {
       // testing appending of main movie card
-      var mainMovieCard = getMainMovieCard(searchObject.results);
+      var mainMovieCard = getMainMovieCard(search.results);
       $('#main-result').html(mainMovieCard);
       $('.collapsible').collapsible();
   }
   if (search.queryType === 'person') {
      // testing appending of main person card
-      var mainPersonCard = getMainPersonCard(searchObject.results);
+      var mainPersonCard = getMainPersonCard(search.results);
       $('#main-result').html(mainPersonCard);
       $('.collapsible').collapsible();
   }     

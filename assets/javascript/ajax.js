@@ -18,20 +18,19 @@ function searchTMDBbyPerson(searchObject, searchKey) {
 			console.log(r.results[0]);
 			// saves results in searchObject.results
 			searchObject.results = r.results[0];
-			actorInfo(searchObject.results.id);
 			// adds head to profile_path
 			searchObject.results.profile_path = 
 			'https://image.tmdb.org/t/p/w300' + searchObject.results.profile_path;
-			// is this the head path to the profile_path image url? https://image.tmdb.org/t/p/w300/
-			// writes search results to firebase
-			writeSearchData(searchObject, searchKey);
+			// actorInfo(searchObject.results.id);
+			// calls the next ajax function, sends object as an argument
+			actorInfo(searchObject, searchKey);
 		}
 	});
 }
 
-function actorInfo(id) {
+function actorInfo(searchObject, searchKey) {
 	var tmdbApiKey = "82f6be9756f8de0b7738603a7b3fab34";
-	var actorID = id;
+	var actorID = searchObject.results.id;
 	var settings = {
 	  "async": true,
 	  "crossDomain": true,
@@ -39,11 +38,16 @@ function actorInfo(id) {
 	  "method": "GET",
 	  "headers": {},
 	  "data": "{}"
-}
+	};
 
 	$.ajax(settings).done(function (response) {
 	  console.log(response);
-	  $('#'+ response.id).text(response.biography);
+	  	searchObject.results.details = response;
+	  	
+	  	// $('#'+ response.id).text(response.biography);
+
+		// writes search results to firebase
+		writeSearchData(searchObject, searchKey);
 	});
 }
 
