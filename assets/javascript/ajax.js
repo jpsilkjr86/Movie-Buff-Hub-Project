@@ -18,6 +18,7 @@ function searchTMDBbyPerson(searchObject, searchKey) {
 			console.log(r.results[0]);
 			// saves results in searchObject.results
 			searchObject.results = r.results[0];
+			actorInfo(searchObject.results.id);
 			// adds head to profile_path
 			searchObject.results.profile_path = 
 			'https://image.tmdb.org/t/p/w300' + searchObject.results.profile_path;
@@ -28,7 +29,8 @@ function searchTMDBbyPerson(searchObject, searchKey) {
 			// testing appending of main person card
 			var mainPersonCard = getMainPersonCard(searchObject.results);
 			$('#main-result').html(mainPersonCard);
-			actorInfo(searchObject.results.id);
+			$('.collapsible').collapsible();
+			
 		}
 	});
 }

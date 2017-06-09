@@ -8,6 +8,15 @@ h3 {
 	text-shadow: black 0.1em 0.1em 0.2em
 }
 
+.collapsible {
+	clear: both;
+	border: 0px;
+}
+
+.responsive-img {
+	margin-bottom: 1px;
+}
+
 .btn {
 	background: #B82601;
 }
