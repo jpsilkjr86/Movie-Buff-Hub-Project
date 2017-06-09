@@ -50,8 +50,8 @@ database.ref('usersearches/' + getUserKey() + '/').on('child_added', function(sn
   console.log(search);
 
   if (search.queryType === 'movie') {
-    var smallMovieCard = getSmallMovieCard(search.results);
-    $('#search-history').append(smallMovieCard);
+    // var smallMovieCard = getSmallMovieCard(search.results);
+    // $('#search-history').append(smallMovieCard);
   }  
 
   
