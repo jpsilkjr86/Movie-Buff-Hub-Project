@@ -1,6 +1,6 @@
 // function to get a user key (unique id) by generating one on firebase
 function generateFirebaseUserKey() {
-	var userRef = firebase.database().ref('new/usersearches');
+	var userRef = firebase.database().ref('usersearches');
 	var gotKey = userRef.push().key;
 	gotKey = 'user_' + gotKey; // adds 'user_' to the beginning of the string
 	return gotKey;
@@ -8,7 +8,7 @@ function generateFirebaseUserKey() {
 
 // function to get a key (unique id) for a search entry by generating one on firebase
 function generateFirebaseSearchKey() {
-	var searchesRef = firebase.database().ref('new/allsearches');
+	var searchesRef = firebase.database().ref('allsearches');
 	var gotKey = searchesRef.push().key;
 	gotKey = 'search_' + gotKey; // adds 'user_' to the beginning of the string
 	return gotKey;
@@ -29,7 +29,7 @@ function writeSearchData(searchObject, searchKey) {
 	// saves timestamp
 	searchObject.timestamp = firebase.database.ServerValue.TIMESTAMP;
 	// writes same data to two separate references in firebase
-	database.ref('new/allsearches/' + searchKey).set(searchObject);
-	database.ref('new/usersearches/' + searchObject.id + '/allsearches/' + searchKey).set(searchObject);
-	database.ref('new/usersearches/' + searchObject.id + '/lastsearch').set(searchObject);
+	database.ref('allsearches/' + searchKey).set(searchObject);
+	database.ref('usersearches/' + searchObject.id + '/allsearches/' + searchKey).set(searchObject);
+	database.ref('usersearches/' + searchObject.id + '/lastsearch').set(searchObject);
 }
