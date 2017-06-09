@@ -51,10 +51,12 @@ database.ref('usersearches/' + getUserKey() + '/allsearches').on('child_added', 
 
   if (search.queryType === 'movie') {
     var smallMovieCard = getSmallMovieCard(search.results);
-    $('#search-history').append(smallMovieCard);
+    $('#search-history').prepend(smallMovieCard);
+  }
+  if (search.queryType === 'person') {
+    var smallPersonCard = getSmallPersonCard(search.results);
+    $('#search-history').prepend(smallPersonCard);
   }  
-
-  
 }); // end of history.html event listener
 
 // event listener for search.html last search result

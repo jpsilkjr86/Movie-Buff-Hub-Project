@@ -199,6 +199,52 @@ function getSmallMovieCard(result) {
 	return column;
 }
 
+function getSmallPersonCard(result) {
+	
+	var column = $('<div class="col s12 m6 xl4">')
+	
+	var card = $('<div class="card horizontal blue-grey darken-4">');
+
+	var cardImage = $('<div class="card-image">');
+	var poster = $('<img>');
+	poster.attr('src', result.profile_path)
+		.attr('alt', result.name + ' Profile')
+		.addClass('small-profile')
+		.appendTo(cardImage);
+
+	var cardStacked = $('<div class="card-stacked">');
+
+	var cardContent = $('<div class="card-content">');
+
+	var personName = $('<h6>');
+	personName.text(result.name)
+		.appendTo(cardContent);
+	var subTitle = $('<p>');
+	subTitle.html('Known for:<br><cite>' 
+				+ result.known_for[0].original_title
+				+ '</cite>')
+			.appendTo(cardContent);
+
+	var cardAction = $('<div class="card-action">');
+	var link = $('<a href="#">');
+	link.text('Learn More')
+		.addClass('link') // for click event listener
+		.attr('data-name', result.name) // data for ajax request
+		.attr('data-type', 'person') // data for ajax request
+		.appendTo(cardAction);
+
+	cardStacked.append(cardContent)
+			.append(cardAction);
+
+	card.append(cardImage)
+		// .append(cardContent);
+		.append(cardStacked);
+
+	column.append(card);
+
+	return column;
+}
+
 
 
 
