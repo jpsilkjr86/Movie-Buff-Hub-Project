@@ -55,6 +55,7 @@ $(document).ready(function(){
 
 	// event listener for clicking on <a class="link">
 	$(document).on('click', '.link', function(event){
+		console.log($(this).attr('data-name'));
 		// prevents page from trying to seek the href link #
 		event.preventDefault();
 		// gets a database key (unique id) for logging this search entry to firebase

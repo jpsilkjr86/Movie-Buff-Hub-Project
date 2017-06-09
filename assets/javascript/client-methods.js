@@ -76,17 +76,30 @@ function isSearchInputValid(query) {
 	}
 }
 
-function getCarouselItem(imgURL){
+function getCarouselItem(result, resultType){
 	var item = $('<a>');
 
 	item.addClass('carousel-item') // carouselIndex is a global variable (see database-mng.js)
 		.attr('href', '#' + carouselIndex + '!');
 
-	var poster = $('<img>');
+	var img = $('<img>');
 
-	poster.attr('src', imgURL)
-		.appendTo(item);
-
+	if (resultType === 'movie') {
+		img.attr('src', result.Poster)
+			.attr('alt', result.Title)
+			.attr('data-type', resultType)
+			.attr('data-name', result.Title)
+			.addClass('link')
+			.appendTo(item);
+	}
+	if (resultType === 'person') {
+		img.attr('src', result.profile_path)
+			.attr('alt', result.name)
+			.attr('data-type', resultType)
+			.attr('data-name', result.name)
+			.addClass('link')
+			.appendTo(item);
+	}
 	 return item;
 }
 

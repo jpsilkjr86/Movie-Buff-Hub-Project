@@ -27,12 +27,12 @@ database.ref('allsearches').on('child_added', function(snapshot){
 
     if (snapshot.val().queryType == 'movie') {
       var movie = snapshot.val().results;
-      var movieItem = getCarouselItem(movie.Poster);
+      var movieItem = getCarouselItem(movie, 'movie');
       $('.carousel').prepend(movieItem);
     }
     if (snapshot.val().queryType == 'person') {
       var person = snapshot.val().results;
-      var personItem = getCarouselItem(person.profile_path);
+      var personItem = getCarouselItem(person, 'person');
       $('.carousel').prepend(personItem);
     } 
       // initializes carousel if it takes longer than .3 seconds to load the next image 
