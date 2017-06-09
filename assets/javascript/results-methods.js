@@ -1,38 +1,68 @@
 
 function getMainMovieCard (result) {
 
-	var card = $('<div class="card horizontal blue-grey darken-4">');
-
+	var card = $('<div class="card-horizontal blue-grey darken-4">');
 	var cardImage = $('<div class="card-image">');
-	var poster = $('<img>');
+	card.append(cardImage);
+	var poster = $('<img class="left responsive-img">');
 	poster.attr('src', result.Poster)
-		.attr('alt', result.Title + ' Poster')
+		.attr('alt', result.Title + ' Profile')
 		.appendTo(cardImage);
+	var cardTitle = $('<span class="center-align card-title">');
+	cardTitle.html('<h2>' + result.Title + '</h2>');
+	card.append(cardTitle);
+	var ul = $('<ul class="collapsible" data-collapsible="accordion">');
+	card.append(ul);
+	var aboutLi = $('<li>');
+	var castLi = $('<li>')
+	ul.append(aboutLi);
+	var aboutHead = $('<div class="blue-grey darken-3 collapsible-header">');
+	aboutHead.text("About");
+	aboutLi.append(aboutHead);
+	var aboutBody = $('<div class="collapsible-body">');
+	aboutBody.html('<p>Year Released: '+ result.Year +'</p><p>Directed by: '+ result.Director + '</p><p>Plot: ' + result.Plot + '</p>');
+	aboutLi.append(aboutBody);
+	ul.append(castLi);
+	var castHead = $('<div class="blue-grey darken-3 collapsible-header">');
+	castHead.text('Main Cast');
+	castLi.append(castHead);
+	var castBody = $('<div class="collapsible-body">');
+	castBody.html('<p>'+ result.Actors +'</p>');
+	castLi.append(castBody);
 
-	var cardStacked = $('<div class="card-stacked">');
+	// var card = $('<div class="card horizontal blue-grey darken-4">');
 
-	var cardContent = $('<div class="card-content">');
-	var title = $('<h4>');
-	title.text(result.Title)
-		.appendTo(cardContent);
-	var subTitle = $('<h5>');
-	subTitle.html('Year Released: ' + result.Year + 
-				'<br>Directed by: ' + result.Director + 
-				'<br>Main Cast: ' + result.Actors)
-			.appendTo(cardContent);
+	// var cardImage = $('<div class="card-image">');
+	// var poster = $('<img>');
+	// poster.attr('src', result.Poster)
+	// 	.attr('alt', result.Title + ' Poster')
+	// 	.appendTo(cardImage);
 
-	var cardAction = $('<div class="card-action">');
-	var link = $('<a href="#">');
-	link.text('Some action here (website? button?)').appendTo(cardAction);
+	// var cardStacked = $('<div class="card-stacked">');
 
-	cardStacked.append(cardContent).append(cardAction);
+	// var cardContent = $('<div class="card-content">');
+	// var title = $('<h4>');
+	// title.text(result.Title)
+	// 	.appendTo(cardContent);
+	// var subTitle = $('<h5>');
+	// subTitle.html('Year Released: ' + result.Year + 
+	// 			'<br>Directed by: ' + result.Director + 
+	// 			'<br>Main Cast: ' + result.Actors)
+	// 		.appendTo(cardContent);
 
-	card.append(cardImage).append(cardStacked);
+	// var cardAction = $('<div class="card-action">');
+	// var link = $('<a href="#">');
+	// link.text('Some action here (website? button?)').appendTo(cardAction);
+
+	// cardStacked.append(cardContent).append(cardAction);
+
+	// card.append(cardImage).append(cardStacked);
 
 	return card;
 }
 
 function getMainPersonCard (result) {
+
 	var card = $('<div class="card-horizontal blue-grey darken-4">');
 	var cardImage = $('<div class="card-image">');
 	card.append(cardImage);
@@ -43,36 +73,27 @@ function getMainPersonCard (result) {
 	var cardTitle = $('<span class="center-align card-title">');
 	cardTitle.html('<h2>' + result.name + '</h2>');
 	card.append(cardTitle);
-	var ul = $('<ul class="collapsible" data-collapsible="expandable">');
+	var ul = $('<ul class="collapsible" data-collapsible="accordion">');
 	card.append(ul);
 	var bioLi = $('<li>');
 	var knownLi = $('<li>')
 	ul.append(bioLi);
-	var liHead = $('<div class="blue-grey darken-3 collapsible-header">');
-	liHead.text("Biography")
-	bioLi.append(liHead);
+	var bioHead = $('<div class="blue-grey darken-3 collapsible-header">');
+	bioHead.text("Biography");
+	bioLi.append(bioHead);
 	var bioBody = $('<div class="collapsible-body">');
 	bioBody.html('<p id="'+result.id+'"></p>')
 	bioLi.append(bioBody);
 	ul.append(knownLi);
-
-
-
-	// <div class="card-horizontal blue-grey darken-4">
-	//   <div class="card-image">
-	//     <img class="left" src="https://image.tmdb.org/t/p/w300/2daC5DeXqwkFND0xxutbnSVKN6c.jpg" alt="">
-	//   </div>
-	//   <span class="center-align card-title"><h2>Bradley Cooper</h2></span>
-	//   <ul class="collapsible" data-collapsible="accordion">
-	//     <li>
-	//       <div class="collapsible-header">Biography</div>
-	//       <div class="collapsible-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae hic vitae inventore, explicabo laborum eius laboriosam, possimus autem quae molestiae? Amet nisi, magnam, quidem ad nostrum non modi perspiciatis consectetur.</div>
-	//     </li>
-	//     <li>
-	      
-	//     </li>
-	//   </ul>
-	// </div>
+	var knownHead = $('<div class="blue-grey darken-3 collapsible-header">');
+	knownHead.text('Known For');
+	knownLi.append(knownHead);
+	var knownBody = $('<div class="collapsible-body">');
+	knownBody.html('<p>' 
+				+ result.known_for[0].original_title + '</p><p>'
+				+ result.known_for[1].original_title + '</p><p>'
+				+ result.known_for[2].original_title + '</p>');
+	knownLi.append(knownBody);
 
 	// var card = $('<div class="card horizontal blue-grey darken-4">');
 

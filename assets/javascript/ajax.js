@@ -108,6 +108,7 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 			// testing appending of main movie card
 			var mainMovieCard = getMainMovieCard(searchObject.results);
 			$('#main-result').html(mainMovieCard);
+			$('.collapsible').collapsible();
 		}
 	});
 }
