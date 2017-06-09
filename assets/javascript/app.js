@@ -8,7 +8,7 @@ $(document).ready(function(){
 	// event listener for clicking submit
 	$('#movie-form').on('submit', function(event){
 		// prevents page from auto-reloading
-		// event.preventDefault();
+		event.preventDefault();
 		// saves main search query as variable
 		var searchQuery = $('#main-search').val().trim();
 		// empties input field
@@ -24,13 +24,16 @@ $(document).ready(function(){
 
 			// queries OMDB API and stores results onto firebase for convenient, persistent reference
 			searchOMDBbyMovie(searchObject, searchKey);
+
+			// not working yet
+			// window.location.href = './search.html';
 		}
 		else {$('#my-modal-movie').modal('open');}			
 	});
 
 	// event listener for clicking submit on person search
 	$('#person-form').on('submit', function(event){
-		// event.preventDefault();
+		event.preventDefault();
 		var personQuery = $('#person-search').val().trim();
 		$('#person-search').val('');
 
@@ -44,6 +47,9 @@ $(document).ready(function(){
 
 			// queries OMDB API and stores results onto firebase for convenient, persistent reference
 			searchTMDBbyPerson(searchObject, searchKey);
+
+			// not working yet
+			// window.location.href = './search.html';
 		}
 		else {$('#my-modal-actor').modal('open');}	
 	});
