@@ -166,6 +166,7 @@ function getSmallMovieCard(result) {
 	var poster = $('<img>');
 	poster.attr('src', result.Poster)
 		.attr('alt', result.Title + ' Poster')
+		.addClass('small-poster')
 		.appendTo(cardImage);
 
 	// var cardStacked = $('<div class="card-stacked">');
