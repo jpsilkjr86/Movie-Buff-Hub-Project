@@ -18,6 +18,7 @@ function searchTMDBbyPerson(searchObject, searchKey) {
 			console.log(r.results[0]);
 			// saves results in searchObject.results
 			searchObject.results = r.results[0];
+			actorInfo(searchObject.results.id);
 			// adds head to profile_path
 			searchObject.results.profile_path = 
 			'https://image.tmdb.org/t/p/w300' + searchObject.results.profile_path;
@@ -25,6 +26,24 @@ function searchTMDBbyPerson(searchObject, searchKey) {
 			// writes search results to firebase
 			writeSearchData(searchObject, searchKey);
 		}
+	});
+}
+
+function actorInfo(id) {
+	var tmdbApiKey = "82f6be9756f8de0b7738603a7b3fab34";
+	var actorID = id;
+	var settings = {
+	  "async": true,
+	  "crossDomain": true,
+	  "url": "https://api.themoviedb.org/3/person/"+ actorID +"?append_to_response=tagged_images&language=en-US&api_key=" + tmdbApiKey,
+	  "method": "GET",
+	  "headers": {},
+	  "data": "{}"
+}
+
+	$.ajax(settings).done(function (response) {
+	  console.log(response);
+	  $('#'+ response.id).text(response.biography);
 	});
 }
 

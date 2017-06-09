@@ -49,10 +49,10 @@ database.ref('usersearches/' + getUserKey() + '/allsearches').on('child_added', 
   var search = snapshot.val();
   console.log(search);
 
-  // if (search.queryType === 'movie') {
-  //   var smallMovieCard = getSmallMovieCard(search.results);
-  //   $('#search-history').append(smallMovieCard);
-  // }  
+  if (search.queryType === 'movie') {
+    // var smallMovieCard = getSmallMovieCard(search.results);
+    // $('#search-history').append(smallMovieCard);
+  }  
 
   
 }); // end of allsearches child_added event listener
@@ -62,13 +62,15 @@ database.ref('usersearches/' + getUserKey() + '/lastsearch').on('value', functio
   var search = snapshot.val();
   if (search.queryType === 'movie') {
       // testing appending of main movie card
-      var mainMovieCard = getMainMovieCard(search.results);
+      var mainMovieCard = getMainMovieCard(searchObject.results);
       $('#main-result').html(mainMovieCard);
+      $('.collapsible').collapsible();
   }
   if (search.queryType === 'person') {
      // testing appending of main person card
-      var mainPersonCard = getMainPersonCard(search.results);
+      var mainPersonCard = getMainPersonCard(searchObject.results);
       $('#main-result').html(mainPersonCard);
+      $('.collapsible').collapsible();
   }     
 });
 
