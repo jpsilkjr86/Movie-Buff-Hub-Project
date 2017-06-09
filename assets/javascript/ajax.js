@@ -49,7 +49,7 @@ function actorInfo(searchObject, searchKey) {
 		// writes search results to firebase
 		writeSearchData(searchObject, searchKey);
 
-		// functionality for loading a new page
+		// functionality for loading search.html only if user is not currently on search.html
 		var path = window.location.href;
 		var currentPage = path.substr(path.length - 11);
 		if (currentPage !== 'search.html') {
@@ -110,7 +110,7 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 			// writes search results to firebase
 			writeSearchData(searchObject, searchKey);
 
-			// functionality for loading a new page
+			// functionality for loading search.html only if user is not currently on search.html
 			var path = window.location.href;
 			var currentPage = path.substr(path.length - 11);
 			console.log(currentPage);
