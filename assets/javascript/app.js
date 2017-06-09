@@ -53,6 +53,30 @@ $(document).ready(function(){
 		else {$('#my-modal-actor').modal('open');}	
 	});
 
+	// event listener for clicking on <a class="link">
+	$(document).on('click', '.link', function(event){
+		// prevents page from trying to seek the href link #
+		event.preventDefault();
+		// gets a database key (unique id) for logging this search entry to firebase
+		var searchKey = generateFirebaseSearchKey();
+		// gets the query from data-name
+		var query = $(this).attr('data-name');
+
+		// conditions for calling ajax requests
+		if ($(this).attr('data-type') === 'movie') {
+			// creates a searchObject for the new query
+			var searchObject = new searchDataObject(query, 'movie');
+			// sends searchObject and searchKey as arguments for the ajax request
+			searchOMDBbyMovie(searchObject, searchKey);
+		}
+		if ($(this).attr('data-type') === 'person') {
+			// creates a searchObject for the new query
+			var searchObject = new searchDataObject(query, 'person');
+			// sends searchObject and searchKey as arguments for the ajax request
+			searchTMDBbyPerson(searchObject, searchKey);
+		}
+	});
+
 
 	// event listeners for data-management during development phase - DELETE BEFORE DEPLOYMENT
 	$(document).on('keypress', function(event){

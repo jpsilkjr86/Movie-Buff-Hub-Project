@@ -173,16 +173,19 @@ function getSmallMovieCard(result) {
 	var cardContent = $('<div class="card-content">');
 
 	var title = $('<h6>');
-	title.text(result.Title)
+	title.text(result.Title + ' (' + result.Year + ')')
 		.appendTo(cardContent);
 	var subTitle = $('<p>');
-	subTitle.html('(' + result.Year+
-				') Director: ' + result.Director)
+	subTitle.html('Director: ' + result.Director)
 			.appendTo(cardContent);
 
 	var cardAction = $('<div class="card-action">');
 	var link = $('<a href="#">');
-	link.text('Learn More').appendTo(cardAction);
+	link.text('Learn More')
+		.addClass('link') // for click event listener
+		.attr('data-name', result.Title) // data for ajax request
+		.attr('data-type', 'movie') // data for ajax request
+		.appendTo(cardAction);
 
 	cardStacked.append(cardContent)
 			.append(cardAction);
