@@ -85,22 +85,42 @@ function getCarouselItem(result, resultType){
 	var img = $('<img>');
 
 	if (resultType === 'movie') {
+		// the normal click event handler wouldn't work for the carousel (probably has
+		// to do with the carousel() in-built functionality in materialize framework,
+		// but it works when i  attach it direclty to the DOM element itself via onclick
+		// attribute. see carouselClickHandler() below for more details.
+		item.attr("onclick", "carouselClickHandler('" + result.Title + "', 'movie')");
 		img.attr('src', result.Poster)
 			.attr('alt', result.Title)
-			.attr('data-type', resultType)
-			.attr('data-name', result.Title)
-			.addClass('link')
+			// .addClass('link')
 			.appendTo(item);
 	}
 	if (resultType === 'person') {
+		item.attr("onclick", "carouselClickHandler('" + result.name + "', 'person')");
 		img.attr('src', result.profile_path)
 			.attr('alt', result.name)
-			.attr('data-type', resultType)
-			.attr('data-name', result.name)
-			.addClass('link')
+			// .addClass('link')
 			.appendTo(item);
 	}
 	 return item;
+}
+
+function carouselClickHandler(query, queryType) {
+	var searchKey = generateFirebaseSearchKey();
+
+	// conditions for calling ajax requests
+	if (queryType === 'movie') {
+		// creates a searchObject for the new query
+		var searchObject = new searchDataObject(query, 'movie');
+		// sends searchObject and searchKey as arguments for the ajax request
+		searchOMDBbyMovie(searchObject, searchKey);
+	}
+	if (queryType === 'person') {
+		// creates a searchObject for the new query
+		var searchObject = new searchDataObject(query, 'person');
+		// sends searchObject and searchKey as arguments for the ajax request
+		searchTMDBbyPerson(searchObject, searchKey);
+	}
 }
 
 function getSmallMovieCard(result) {
@@ -192,9 +212,3 @@ function getSmallPersonCard(result) {
 
 	return column;
 }
-
-
-
-
-
-
