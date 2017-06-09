@@ -76,82 +76,50 @@ function isSearchInputValid(query) {
 	}
 }
 
-function getCarouselItem(imgURL){
+function getCarouselItem(result, resultType){
 	var item = $('<a>');
 
-	item.addClass('carousel-item')
-		.attr('href', '#' + getCarouselIndex() + '!');
+	item.addClass('carousel-item') // carouselIndex is a global variable (see database-mng.js)
+		.attr('href', '#' + carouselIndex + '!');
 
-	var poster = $('<img>');
+	var img = $('<img>');
 
-	poster.attr('src', imgURL)
-		.appendTo(item);
-
+	if (resultType === 'movie') {
+		// the normal click event handler wouldn't work for the carousel (probably has
+		// to do with the carousel() in-built functionality in materialize framework,
+		// but it works when i  attach it direclty to the DOM element itself via onclick
+		// attribute. see carouselClickHandler() below for more details.
+		item.attr("onclick", "carouselClickHandler('" + result.Title + "', 'movie')");
+		img.attr('src', result.Poster)
+			.attr('alt', result.Title)
+			// .addClass('link')
+			.appendTo(item);
+	}
+	if (resultType === 'person') {
+		item.attr("onclick", "carouselClickHandler('" + result.name + "', 'person')");
+		img.attr('src', result.profile_path)
+			.attr('alt', result.name)
+			// .addClass('link')
+			.appendTo(item);
+	}
 	 return item;
 }
 
-function getCarouselIndex() {
-	switch (carouselIndex) {
-		case 1:
-			return 'one';
-			break;
-		case 2:
-			return 'two';
-			break;
-		case 3:
-			return 'three';
-			break;
-		case 4:
-			return 'four';
-			break;
-		case 5:
-			return 'five';
-			break;
-		case 6:
-			return 'six';
-			break;
-		case 7:
-			return 'seven';
-			break;
-		case 8:
-			return 'eight';
-			break;
-		case 9:
-			return 'nine';
-			break;
-		case 10:
-			return 'ten';
-			break;
-		case 11:
-			return 'eleven';
-			break;
-		case 12:
-			return 'twelve';
-			break;
-		case 13:
-			return 'thirteen';
-			break;
-		case 14:
-			return 'fourteen';
-			break;
-		case 15:
-			return 'fifteen';
-			break;
-		case 16:
-			return 'sixteen';
-			break;
-		case 17:
-			return 'seventeen';
-			break;
-		case 18:
-			return 'eighteen';
-			break;
-		case 19:
-			return 'nineteen';
-			break;
-		case 20:
-			return 'twenty';
-			break;
+function carouselClickHandler(query, queryType) {
+	var searchKey = generateFirebaseSearchKey();
+
+	// conditions for calling ajax requests
+	if (queryType === 'movie') {
+		// creates a searchObject for the new query
+		var searchObject = new searchDataObject(query, 'movie');
+		// sends searchObject and searchKey as arguments for the ajax request
+		searchOMDBbyMovie(searchObject, searchKey);
+	}
+	if (queryType === 'person') {
+		// creates a searchObject for the new query
+		var searchObject = new searchDataObject(query, 'person');
+		// sends searchObject and searchKey as arguments for the ajax request
+		searchTMDBbyPerson(searchObject, searchKey);
 	}
 }
 
@@ -244,9 +212,3 @@ function getSmallPersonCard(result) {
 
 	return column;
 }
-
-
-
-
-
-

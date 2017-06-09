@@ -95,7 +95,7 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 	var omdbApiKey = 'd20f646e';
 
 	// query URL for OMDB API
-	var queryURL = 'http://www.omdbapi.com/?apikey=' + omdbApiKey 
+	var queryURL = 'https://www.omdbapi.com/?apikey=' + omdbApiKey 
 				+ '&t=' + searchObject.query;
 
 	// AJAX request
