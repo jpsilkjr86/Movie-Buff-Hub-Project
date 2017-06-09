@@ -4,7 +4,6 @@ $(document).ready(function(){
 	// collapse functionality for side nav on mobile screens
 	$(".button-collapse").sideNav();
 	displayPopular();
-	// enable sidebar when the menu is collapsed
 	// event listener for clicking submit
 	$('#movie-form').on('submit', function(event){
 		// prevents page from auto-reloading
@@ -26,7 +25,7 @@ $(document).ready(function(){
 			searchOMDBbyMovie(searchObject, searchKey);
 
 			// not working yet
-			// window.location.href = './search.html';
+			// window.location.href = './search.html';			
 		}
 		else {$('#my-modal-movie').modal('open');}			
 	});
@@ -52,6 +51,30 @@ $(document).ready(function(){
 			// window.location.href = './search.html';
 		}
 		else {$('#my-modal-actor').modal('open');}	
+	});
+
+	// event listener for clicking on <a class="link">
+	$(document).on('click', '.link', function(event){
+		// prevents page from trying to seek the href link #
+		event.preventDefault();
+		// gets a database key (unique id) for logging this search entry to firebase
+		var searchKey = generateFirebaseSearchKey();
+		// gets the query from data-name
+		var query = $(this).attr('data-name');
+
+		// conditions for calling ajax requests
+		if ($(this).attr('data-type') === 'movie') {
+			// creates a searchObject for the new query
+			var searchObject = new searchDataObject(query, 'movie');
+			// sends searchObject and searchKey as arguments for the ajax request
+			searchOMDBbyMovie(searchObject, searchKey);
+		}
+		if ($(this).attr('data-type') === 'person') {
+			// creates a searchObject for the new query
+			var searchObject = new searchDataObject(query, 'person');
+			// sends searchObject and searchKey as arguments for the ajax request
+			searchTMDBbyPerson(searchObject, searchKey);
+		}
 	});
 
 

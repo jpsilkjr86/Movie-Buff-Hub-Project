@@ -82,9 +82,7 @@ function getMainPersonCard (result) {
 	bioHead.text("Biography");
 	bioLi.append(bioHead);
 	var bioBody = $('<div class="collapsible-body">');
-	// bioBody.html('<p id="'+result.id+'"></p>')  // old (this function)
 	bioBody.html('<p>' + result.details.biography + '</p>');
-	// $('#'+ response.id).text(response.biography);   // old (used to be in ajax promise function)
 	bioLi.append(bioBody);
 	ul.append(knownLi);
 	var knownHead = $('<div class="blue-grey darken-3 collapsible-header">');

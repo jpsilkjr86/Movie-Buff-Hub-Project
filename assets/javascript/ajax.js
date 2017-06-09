@@ -43,11 +43,18 @@ function actorInfo(searchObject, searchKey) {
 	$.ajax(settings).done(function (response) {
 	  console.log(response);
 	  	searchObject.results.details = response;
-	  	
+
 	  	// $('#'+ response.id).text(response.biography);
 
 		// writes search results to firebase
 		writeSearchData(searchObject, searchKey);
+
+		// functionality for loading search.html only if user is not currently on search.html
+		var path = window.location.href;
+		var currentPage = path.substr(path.length - 11);
+		if (currentPage !== 'search.html') {
+			window.location.href = './search.html';
+		}
 	});
 }
 
@@ -102,6 +109,14 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 			searchObject.results = r;
 			// writes search results to firebase
 			writeSearchData(searchObject, searchKey);
+
+			// functionality for loading search.html only if user is not currently on search.html
+			var path = window.location.href;
+			var currentPage = path.substr(path.length - 11);
+			console.log(currentPage);
+			if (currentPage !== 'search.html') {
+				window.location.href = './search.html';
+			}
 		}
 	});
 }

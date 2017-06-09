@@ -1,0 +1,33 @@
+/* for any viewpoints smaller than the custom breaking point below */
+@media only screen and (max-width : 399px) {
+	.card, .small-poster, .small-profile {height: 150px; width: auto;}
+	p, h6, a {font-size: 12px;}
+	.card-stacked, .card-content, .card-action {padding: 5px 10px !important;}
+}
+/* Custom Breaking Point (do min-width for mobile-first) */
+@media only screen and (min-width : 400px) {
+	.card, .small-poster, .small-profile {height: 200px; width: auto;}
+	/*p {font-size: 14px;}*/
+}
+ /* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+	.card, .small-poster, .small-profile {height: 300px; width: auto;}
+}
+/* Custom breaking point */
+@media only screen and (min-width : 600px) {
+	.card, .small-poster, .small-profile {height: 200px; width: 300px;}
+}
+/* Custom breaking point */
+@media only screen and (min-width : 700px) {
+	.card, .small-poster, .small-profile {height: 200px; width: auto;}
+}
+/* Small Devices, Tablets [NO MEDIA QUERIE NECESSARY HERE] */
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+	.card, .small-poster, .small-profile {height: 300px; width: auto;}
+}
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+	.card, .small-poster, .small-profile {height: 200px; width: auto;}
+}
