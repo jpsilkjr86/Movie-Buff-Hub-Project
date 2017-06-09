@@ -30,6 +30,9 @@ h3 {
 #my-modal-actor, #my-modal-movie {
 	color: black;
 }
+#search-history {
+	padding: 10px 20px;
+}
 
 /*.main-movie-content {
 	color: black;

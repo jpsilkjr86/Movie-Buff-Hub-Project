@@ -158,6 +158,8 @@ function getCarouselIndex() {
 
 function getSmallMovieCard(result) {
 	
+	var column = $('<div class="col s12 m6 l4">')
+	
 	var card = $('<div class="card horizontal blue-grey darken-4">');
 
 	var cardImage = $('<div class="card-image">');
@@ -166,26 +168,36 @@ function getSmallMovieCard(result) {
 		.attr('alt', result.Title + ' Poster')
 		.appendTo(cardImage);
 
-	var cardStacked = $('<div class="card-stacked">');
+	// var cardStacked = $('<div class="card-stacked">');
 
 	var cardContent = $('<div class="card-content">');
 
-	var title = $('<h3>');
+	var title = $('<h6>');
 	title.text(result.Title)
 		.appendTo(cardContent);
 	var subTitle = $('<p>');
-	subTitle.html('Year released: ' + result.Year+
-				' Plot: ' + result.Plot)
+	subTitle.html('(' + result.Year+
+				') Director: ' + result.Director)
 			.appendTo(cardContent);
 
-	var cardAction = $('<div class="card-action">');
-	var link = $('<a href="#">');
-	link.text('Some action here (website? button?)').appendTo(cardAction);
+	// var cardAction = $('<div class="card-action">');
+	// var link = $('<a href="#">');
+	// link.text('Some action here (website? button?)').appendTo(cardAction);
 
-	cardStacked.append(cardContent).append(cardAction);
+	// cardStacked.append(cardContent);
+		// .append(cardAction);
 
-	card.append(cardImage).append(cardStacked);
+	card.append(cardImage)
+		.append(cardContent);
+		// .append(cardStacked);
 
-	return card;
+	column.append(card);
+
+	return column;
 }
+
+
+
+
+
 
