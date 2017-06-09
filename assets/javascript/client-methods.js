@@ -157,7 +157,7 @@ function getCarouselIndex() {
 
 function getSmallMovieCard(result) {
 	
-	var column = $('<div class="col s12 l6 xl4">')
+	var column = $('<div class="col s12 m6 xl4">')
 	
 	var card = $('<div class="card horizontal blue-grey darken-4">');
 
