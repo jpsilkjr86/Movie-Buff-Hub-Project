@@ -16,7 +16,7 @@ var carouselIndex = 0;
 var carouselLoadTimeout;
 var isCarouselActive = false;
 
-database.ref('allsearches').on('child_added', function(snapshot){
+database.ref('new/allsearches').on('child_added', function(snapshot){
   // if it is either a movie or person AND if the carousel has not yet been activated
   if ((snapshot.val().queryType == 'movie' || snapshot.val().queryType == 'person') && !isCarouselActive) {
     // increments carousel index for the purpose of telling the app which place to put the new images
@@ -44,16 +44,31 @@ database.ref('allsearches').on('child_added', function(snapshot){
 
 
 // child_added listener for history.html.
-database.ref('usersearches/' + getUserKey() + '/').on('child_added', function(snapshot){
+database.ref('new/usersearches/' + getUserKey() + '/allsearches').on('child_added', function(snapshot){
   // saves snapshot of child data as a more manageable variable
   var search = snapshot.val();
   console.log(search);
 
-  if (search.queryType === 'movie') {
-    var smallMovieCard = getSmallMovieCard(search.results);
-    $('#search-history').append(smallMovieCard);
-  }  
+  // if (search.queryType === 'movie') {
+  //   var smallMovieCard = getSmallMovieCard(search.results);
+  //   $('#search-history').append(smallMovieCard);
+  // }  
 
   
 }); // end of allsearches child_added event listener
+
+database.ref('new/usersearches/' + getUserKey() + '/lastsearch').on('value', function(snapshot){
+  console.log('snapshot', snapshot.val());
+  var search = snapshot.val();
+  if (search.queryType === 'movie') {
+      // testing appending of main movie card
+      var mainMovieCard = getMainMovieCard(search.results);
+      $('#main-result').html(mainMovieCard);
+  }
+  if (search.queryType === 'person') {
+     // testing appending of main person card
+      var mainPersonCard = getMainPersonCard(search.results);
+      $('#main-result').html(mainPersonCard);
+  }     
+});
 

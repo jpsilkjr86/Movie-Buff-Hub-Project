@@ -8,7 +8,7 @@ $(document).ready(function(){
 	// event listener for clicking submit
 	$('#movie-form').on('submit', function(event){
 		// prevents page from auto-reloading
-		event.preventDefault();
+		// event.preventDefault();
 		// saves main search query as variable
 		var searchQuery = $('#main-search').val().trim();
 		// empties input field
@@ -30,7 +30,7 @@ $(document).ready(function(){
 
 	// event listener for clicking submit on person search
 	$('#person-form').on('submit', function(event){
-		event.preventDefault();
+		// event.preventDefault();
 		var personQuery = $('#person-search').val().trim();
 		$('#person-search').val('');
 
@@ -55,7 +55,7 @@ $(document).ready(function(){
 		// if user presses *, clears local storage
 		if (event.which === 42) {localStorage.clear();}
 		// if user presses ~, clears all data in database
-		if (event.which === 126) {database.ref().set({});}
+		if (event.which === 126) {database.ref('new').set({});}
 		// if user presses ?, displays user key in console
 		if (event.which === 63) {console.log(localStorage.getItem('User Key'));}
 	});
