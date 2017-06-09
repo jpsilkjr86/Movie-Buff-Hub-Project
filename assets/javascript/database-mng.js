@@ -44,7 +44,7 @@ database.ref('allsearches').on('child_added', function(snapshot){
 
 
 // child_added listener for history.html.
-database.ref('usersearches/' + getUserKey() + '/').on('child_added', function(snapshot){
+database.ref('usersearches/' + getUserKey() + '/allsearches').on('child_added', function(snapshot){
   // saves snapshot of child data as a more manageable variable
   var search = snapshot.val();
   console.log(search);
@@ -56,4 +56,21 @@ database.ref('usersearches/' + getUserKey() + '/').on('child_added', function(sn
 
   
 }); // end of allsearches child_added event listener
+
+database.ref('usersearches/' + getUserKey() + '/lastsearch').on('value', function(snapshot){
+  console.log('snapshot', snapshot.val());
+  var search = snapshot.val();
+  if (search.queryType === 'movie') {
+      // testing appending of main movie card
+      var mainMovieCard = getMainMovieCard(search.results);
+      $('#main-result').html(mainMovieCard);
+      $('.collapsible').collapsible();
+  }
+  if (search.queryType === 'person') {
+     // testing appending of main person card
+      var mainPersonCard = getMainPersonCard(search.results);
+      $('#main-result').html(mainPersonCard);
+      $('.collapsible').collapsible();
+  }     
+});
 

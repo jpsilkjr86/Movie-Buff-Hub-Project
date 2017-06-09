@@ -30,5 +30,6 @@ function writeSearchData(searchObject, searchKey) {
 	searchObject.timestamp = firebase.database.ServerValue.TIMESTAMP;
 	// writes same data to two separate references in firebase
 	database.ref('allsearches/' + searchKey).set(searchObject);
-	database.ref('usersearches/' + searchObject.id + '/' + searchKey).set(searchObject);
+	database.ref('usersearches/' + searchObject.id + '/allsearches/' + searchKey).set(searchObject);
+	database.ref('usersearches/' + searchObject.id + '/lastsearch').set(searchObject);
 }

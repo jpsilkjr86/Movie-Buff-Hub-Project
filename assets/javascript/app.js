@@ -24,6 +24,9 @@ $(document).ready(function(){
 
 			// queries OMDB API and stores results onto firebase for convenient, persistent reference
 			searchOMDBbyMovie(searchObject, searchKey);
+
+			// not working yet
+			// window.location.href = './search.html';
 		}
 		else {$('#my-modal-movie').modal('open');}			
 	});
@@ -44,6 +47,9 @@ $(document).ready(function(){
 
 			// queries OMDB API and stores results onto firebase for convenient, persistent reference
 			searchTMDBbyPerson(searchObject, searchKey);
+
+			// not working yet
+			// window.location.href = './search.html';
 		}
 		else {$('#my-modal-actor').modal('open');}	
 	});
