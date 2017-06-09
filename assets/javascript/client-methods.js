@@ -69,10 +69,10 @@ function getPersonSuggestionDiv (name, imgURL) {
 
 function isSearchInputValid(query) {
 	if (query == '' || query == null) {
-		console.log(false); return false;
+		return false;
 	}
 	if (query != '' && query != null) {
-		console.log(true); return true;
+		return true;
 	}
 }
 
@@ -91,7 +91,6 @@ function getCarouselItem(imgURL){
 }
 
 function getCarouselIndex() {
-	console.log(carouselIndex);
 	switch (carouselIndex) {
 		case 1:
 			return 'one';

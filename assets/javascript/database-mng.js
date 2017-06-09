@@ -16,6 +16,7 @@ var carouselIndex = 0;
 var carouselLoadTimeout;
 var isCarouselActive = false;
 
+// event listener for generating a materialize carousel
 database.ref('allsearches').on('child_added', function(snapshot){
   // if it is either a movie or person AND if the carousel has not yet been activated
   if ((snapshot.val().queryType == 'movie' || snapshot.val().queryType == 'person') && !isCarouselActive) {
@@ -40,14 +41,13 @@ database.ref('allsearches').on('child_added', function(snapshot){
       isCarouselActive = true;
     }, 300);
   }
-}); // end of allsearches child_added event listener
+}); // end of carousel-generating event listener
 
 
 // child_added listener for history.html.
 database.ref('usersearches/' + getUserKey() + '/allsearches').on('child_added', function(snapshot){
   // saves snapshot of child data as a more manageable variable
   var search = snapshot.val();
-  console.log(search);
 
   if (search.queryType === 'movie') {
     var smallMovieCard = getSmallMovieCard(search.results);
@@ -55,10 +55,10 @@ database.ref('usersearches/' + getUserKey() + '/allsearches').on('child_added', 
   }  
 
   
-}); // end of allsearches child_added event listener
+}); // end of history.html event listener
 
+// event listener for search.html last search result
 database.ref('usersearches/' + getUserKey() + '/lastsearch').on('value', function(snapshot){
-  console.log('snapshot', snapshot.val());
   var search = snapshot.val();
   if (search.queryType === 'movie') {
       // testing appending of main movie card
@@ -72,5 +72,5 @@ database.ref('usersearches/' + getUserKey() + '/lastsearch').on('value', functio
       $('#main-result').html(mainPersonCard);
       $('.collapsible').collapsible();
   }     
-});
+});  // end of lastsearch event listener
 

@@ -4,7 +4,6 @@ $(document).ready(function(){
 	// collapse functionality for side nav on mobile screens
 	$(".button-collapse").sideNav();
 	displayPopular();
-	// enable sidebar when the menu is collapsed
 	// event listener for clicking submit
 	$('#movie-form').on('submit', function(event){
 		// prevents page from auto-reloading
@@ -26,7 +25,7 @@ $(document).ready(function(){
 			searchOMDBbyMovie(searchObject, searchKey);
 
 			// not working yet
-			// window.location.href = './search.html';
+			// window.location.href = './search.html';			
 		}
 		else {$('#my-modal-movie').modal('open');}			
 	});
