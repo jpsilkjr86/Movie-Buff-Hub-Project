@@ -261,11 +261,11 @@ $(document).ready(function(){
 		"Wonder Woman" : null,
 		"Yojimbo" : null
     },
-    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+    limit: 10, // The max amount of results that can be shown at once. Default: Infinity.
     onAutocomplete: function(val) {
       // Callback function when value is autcompleted.
     },
-    minLength: 2, // The minimum length of the input for the autocomplete to start. Default: 1.
+    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
   });
 
 	  $('input#person-search').autocomplete({
@@ -372,11 +372,11 @@ $(document).ready(function(){
 		"John Goodman" : null,
 		"Buster Keaton" : null
     },
-    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+    limit: 10, // The max amount of results that can be shown at once. Default: Infinity.
     onAutocomplete: function(val) {
       // Callback function when value is autcompleted.
     },
-    minLength: 2, // The minimum length of the input for the autocomplete to start. Default: 1.
+    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
   });
 
 });
