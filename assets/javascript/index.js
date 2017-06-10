@@ -31,8 +31,3 @@ database.ref('allsearches').on('child_added', function(snapshot){
     }, 300);
   }
 }); // end of carousel-generating event listener
-
-$(document).ready(function(){
-	// displays popular movies on index.html	
-	displayPopular();
-});
