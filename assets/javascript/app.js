@@ -3,7 +3,6 @@ $(document).ready(function(){
 	$('.modal').modal();
 	// collapse functionality for side nav on mobile screens
 	$(".button-collapse").sideNav();
-	displayPopular();
 	// event listener for clicking submit
 	$('#movie-form').on('submit', function(event){
 		// prevents page from auto-reloading
