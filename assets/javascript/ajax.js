@@ -14,17 +14,17 @@ function searchTMDBbyPerson(searchObject, searchKey) {
 		method: "GET",
 		url: queryURL
 	}).done(function(r){
-		if (r.results[0] != null) {
+		if (r.total_results >= 1) {
 			console.log(r.results[0]);
 			// saves results in searchObject.results
 			searchObject.results = r.results[0];
 			// adds head to profile_path
 			searchObject.results.profile_path = 
 			'https://image.tmdb.org/t/p/w300' + searchObject.results.profile_path;
-			// actorInfo(searchObject.results.id);
 			// calls the next ajax function, sends object as an argument
 			actorInfo(searchObject, searchKey);
 		}
+		else{alert('Sorry, your search didnt yield any results.');}
 	});
 }
 
@@ -101,7 +101,7 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 		method: "GET",
 		url: queryURL
 	}).done(function(r){
-		if (r != null) {
+		if (r.Response !== "False") {
 			console.log(r);
 			// saves results in searchObject.results
 			searchObject.results = r;
@@ -111,6 +111,7 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 			// calls function which listens for firebase uploading to finish 
 			// before redirecting to 'search.html'
 			afterLoadRedirectTo(searchObject, 'search.html');
-		}
+		} 
+		else{alert('Sorry, your search didnt yield any results.');}
 	});
 }
