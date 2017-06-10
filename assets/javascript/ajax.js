@@ -48,8 +48,8 @@ function actorInfo(searchObject, searchKey) {
 		writeSearchData(searchObject, searchKey);
 
 		// calls function which listens for firebase uploading to finish 
-		// before redirecting to './search.html'
-		afterLoadRedirectTo(searchObject, './search.html');
+		// before redirecting to 'search.html'
+		afterLoadRedirectTo(searchObject, 'search.html');
 	});
 }
 
@@ -109,8 +109,8 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 			writeSearchData(searchObject, searchKey);
 
 			// calls function which listens for firebase uploading to finish 
-			// before redirecting to './search.html'
-			afterLoadRedirectTo(searchObject, './search.html');
+			// before redirecting to 'search.html'
+			afterLoadRedirectTo(searchObject, 'search.html');
 		}
 	});
 }
