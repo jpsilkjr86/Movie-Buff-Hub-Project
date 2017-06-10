@@ -67,13 +67,28 @@ function getPersonSuggestionDiv (name, imgURL) {
 	 return div;
 }
 
-function isSearchInputValid(query) {
-	if (query == '' || query == null) {
+function isSearchInputEmpty(query) {
+	if (query == '' || query == null) {return true;}
+	if (query != '' && query != null) {return false;}
+}
+
+function wasSearchedBefore(query, queryType) {
+	if (queryType ==='movie') {
+		for (var i = 0; i < allUserSearches.length; i++) {
+			if (query === allUserSearches[i].query || query === allUserSearches[i].results.Title) {
+				return true;
+			}
+		}
 		return false;
 	}
-	if (query != '' && query != null) {
-		return true;
-	}
+	if (queryType ==='person') {
+		for (var i = 0; i < allUserSearches.length; i++) {
+			if (query === allUserSearches[i].query || query === allUserSearches[i].results.name) {
+				return true;
+			}
+		}
+		return false;
+	}	
 }
 
 function getCarouselItem(result, resultType){

@@ -104,8 +104,8 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 		method: "GET",
 		url: queryURL
 	}).done(function(r){
+		console.log(r);
 		if (r.Response !== "False") {
-			console.log(r);
 			// saves results in searchObject.results
 			searchObject.results = r;
 			// writes search results to firebase

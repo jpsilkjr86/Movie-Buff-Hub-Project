@@ -14,18 +14,22 @@ $(document).ready(function(){
 		$('#main-search').val('');
 
 		// calls input validation function which returns bool
-		if (isSearchInputValid(searchQuery)) {
-			// gets a database key (unique id) for logging this search entry to firebase
-			var searchKey = generateFirebaseSearchKey();
+		if (!isSearchInputEmpty(searchQuery)) {
+			// checks if it was searched before
+			if (!wasSearchedBefore(searchQuery, 'movie')) {
+				// gets a database key (unique id) for logging this search entry to firebase
+				var searchKey = generateFirebaseSearchKey();
 
-			// uses searchDataObject object constructor for setting initial data object values
-			var searchObject = new searchDataObject(searchQuery, 'movie');
+				// uses searchDataObject object constructor for setting initial data object values
+				var searchObject = new searchDataObject(searchQuery, 'movie');
 
-			// queries OMDB API and stores results onto firebase for convenient, persistent reference
-			searchOMDBbyMovie(searchObject, searchKey);
-
-			// not working yet
-			// window.location.href = './search.html';			
+				// queries OMDB API and stores results onto firebase for convenient, persistent reference
+				searchOMDBbyMovie(searchObject, searchKey);		
+			}
+			else { // i.e. if the search has been searched before
+				// Materialize.toast(message, displayLength, className, completeCallback);
+  				Materialize.toast('You have already searched for this before.', 4000);
+			}
 		}
 		else {$('#my-modal-movie').modal('open');}			
 	});
@@ -37,18 +41,21 @@ $(document).ready(function(){
 		$('#person-search').val('');
 
 		// calls input validation function which returns bool
-		if (isSearchInputValid(personQuery)) {
-			// gets a database key (unique id) for logging this search entry to firebase
-			var searchKey = generateFirebaseSearchKey();
+		if (!isSearchInputEmpty(personQuery)) {
+			if (!wasSearchedBefore(personQuery, 'person')) {
+				// gets a database key (unique id) for logging this search entry to firebase
+				var searchKey = generateFirebaseSearchKey();
 
-			// uses searchDataObject object constructor for setting initial data object values
-			var searchObject = new searchDataObject(personQuery, 'person');
+				// uses searchDataObject object constructor for setting initial data object values
+				var searchObject = new searchDataObject(personQuery, 'person');
 
-			// queries OMDB API and stores results onto firebase for convenient, persistent reference
-			searchTMDBbyPerson(searchObject, searchKey);
-
-			// not working yet
-			// window.location.href = './search.html';
+				// queries OMDB API and stores results onto firebase for convenient, persistent reference
+				searchTMDBbyPerson(searchObject, searchKey);
+			}
+			else { // i.e. if the search has been searched before
+				// Materialize.toast(message, displayLength, className, completeCallback);
+  				Materialize.toast('You have already searched for this before.', 4000);
+			}
 		}
 		else {$('#my-modal-actor').modal('open');}	
 	});
