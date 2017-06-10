@@ -24,7 +24,10 @@ function searchTMDBbyPerson(searchObject, searchKey) {
 			// calls the next ajax function, sends object as an argument
 			actorInfo(searchObject, searchKey);
 		}
-		else{alert('Sorry, your search didnt yield any results.');}
+		else{
+			// Materialize.toast(message, displayLength, className, completeCallback);
+  			Materialize.toast('Sorry, your search didnt yield any results.', 4000);
+		}
 	});
 }
 
@@ -112,6 +115,9 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 			// before redirecting to 'search.html'
 			afterLoadRedirectTo(searchObject, 'search.html');
 		} 
-		else{alert('Sorry, your search didnt yield any results.');}
+		else{
+			// Materialize.toast(message, displayLength, className, completeCallback);
+  			Materialize.toast('Sorry, your search didnt yield any results.', 4000);
+		}
 	});
 }

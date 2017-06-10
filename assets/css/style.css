@@ -60,3 +60,11 @@ ul.dropdown-content {
 	.responsive-img{width: 100%;}
 	body{width: 100%;}
 }
+
+/* Custom position for toast message */
+#toast-container {
+  top: auto !important;
+  left: auto !important;
+  bottom: 80%;
+  right:0%;
+}
