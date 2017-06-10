@@ -21,15 +21,20 @@ function searchTMDBbyPerson(searchObject, searchKey) {
 			// adds head to profile_path
 			searchObject.results.profile_path = 
 			'https://image.tmdb.org/t/p/w300' + searchObject.results.profile_path;
-			// calls the next ajax function, sends object as an argument
-			actorInfo(searchObject, searchKey);
+			// checks search history again using retrieved results to avoid rewriting the
+			// same data to firebase, sending retrieved name as argument instead of query term
+			if (!wasSearchedBefore(searchObject.results.name, 'person')) {
+				// calls the next ajax function, sends object as an argument
+				actorInfo(searchObject, searchKey);
+			}
+			else {console.log('was already searched');}
 		}
 		else{
 			// Materialize.toast(message, displayLength, className, completeCallback);
   			Materialize.toast('Sorry, your search didnt yield any results.', 4000);
 		}
 	});
-}
+} // end of searchTMDBbyPerson()
 
 function actorInfo(searchObject, searchKey) {
 	var tmdbApiKey = "82f6be9756f8de0b7738603a7b3fab34";
@@ -54,7 +59,7 @@ function actorInfo(searchObject, searchKey) {
 		// before redirecting to 'search.html'
 		afterLoadRedirectTo(searchObject, 'search.html');
 	});
-}
+} // end of actorInfo()
 
 function displayPopular () {
 	var settings = {
@@ -85,9 +90,9 @@ function displayPopular () {
 	  	div.addClass("caption " + captions[c]);
 	  	div.append(h3);
 	  	h3.text(response.results[i].title);
-	  }
+	  } // end of for loop
 	  $('.slider').slider({indicators: false});
-	});
+	}); // end of promise
 }
 
 // function for querying the omdb API using ajax
@@ -108,12 +113,18 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 		if (r.Response !== "False") {
 			// saves results in searchObject.results
 			searchObject.results = r;
-			// writes search results to firebase
-			writeSearchData(searchObject, searchKey);
+			// checks search history again using retrieved results to avoid rewriting the
+			// same data to firebase, sending retrieved title as argument instead of query term
+			if (!wasSearchedBefore(searchObject.results.Title, 'movie')) {
+				// writes search results to firebase
+				writeSearchData(searchObject, searchKey);
 
-			// calls function which listens for firebase uploading to finish 
-			// before redirecting to 'search.html'
-			afterLoadRedirectTo(searchObject, 'search.html');
+				// calls function which listens for firebase uploading to finish 
+				// before redirecting to 'search.html'
+				afterLoadRedirectTo(searchObject, 'search.html');
+			}
+			else {console.log('already searched before');}
+				
 		} 
 		else{
 			// Materialize.toast(message, displayLength, className, completeCallback);
