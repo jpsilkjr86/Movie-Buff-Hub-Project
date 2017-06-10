@@ -125,7 +125,8 @@ function getCarouselItem(result, resultType){
 		// but it works when i  attach it direclty to the DOM element itself via onclick
 		// attribute. see carouselClickHandler() below for more details.
 		item.attr("onclick", "carouselClickHandler('" + result.Title + "', 'movie')")
-			.attr("ontap", "carouselClickHandler('" + result.Title + "', 'movie')");
+			.attr("data-name", "result.Title")
+			.attr("data-type", "movie");
 		img.attr('src', result.Poster)
 			.attr('alt', result.Title)
 			// .addClass('link')
@@ -133,7 +134,8 @@ function getCarouselItem(result, resultType){
 	}
 	if (resultType === 'person') {
 		item.attr("onclick", "carouselClickHandler('" + result.name + "', 'person')")
-			.attr("ontap", "carouselClickHandler('" + result.Title + "', 'movie')");
+			.attr("data-name", "result.name")
+			.attr("data-type", "person");
 		img.attr('src', result.profile_path)
 			.attr('alt', result.name)
 			// .addClass('link')
