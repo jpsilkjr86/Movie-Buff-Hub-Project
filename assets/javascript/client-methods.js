@@ -124,14 +124,16 @@ function getCarouselItem(result, resultType){
 		// to do with the carousel() in-built functionality in materialize framework,
 		// but it works when i  attach it direclty to the DOM element itself via onclick
 		// attribute. see carouselClickHandler() below for more details.
-		item.attr("onclick", "carouselClickHandler('" + result.Title + "', 'movie')");
+		item.attr("onclick", "carouselClickHandler('" + result.Title + "', 'movie')")
+			.attr("ontap", "carouselClickHandler('" + result.Title + "', 'movie')");
 		img.attr('src', result.Poster)
 			.attr('alt', result.Title)
 			// .addClass('link')
 			.appendTo(item);
 	}
 	if (resultType === 'person') {
-		item.attr("onclick", "carouselClickHandler('" + result.name + "', 'person')");
+		item.attr("onclick", "carouselClickHandler('" + result.name + "', 'person')")
+			.attr("ontap", "carouselClickHandler('" + result.Title + "', 'movie')");
 		img.attr('src', result.profile_path)
 			.attr('alt', result.name)
 			// .addClass('link')
