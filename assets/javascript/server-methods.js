@@ -46,6 +46,7 @@ function afterLoadRedirectTo(searchObject, destination) {
 			console.log('snapshot', snapshot.val());
 			// if the value equals the search object, redirect to destination
 			if (snapshot.val().results.name === searchObject.results.name) {
+				destination = './' + destination;
 				setTimeout(function(){window.location.href = destination;}, 200);
 			}
 		});
