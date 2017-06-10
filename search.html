@@ -45,17 +45,17 @@
 					<div class="card-content white-text">
 						<span class="card-title">Search: </span>
 						<div class="input-field col s6">
-							<form id="movie-form" action="">
+							<form autocomplete="off" id="movie-form" action="">
 								<label for="main-search">Movie Title</label>
-								<input type="text" class="validate" placeholder="ex. The Green Mile" id="main-search">
+								<input type="text" class="autocomplete validate" placeholder="ex. The Green Mile" id="main-search">
 								<br>
 								<button type="submit" class="btn waves-effect waves-red" id="search-submit"><i class="material-icons right">send</i>Submit</button>
 							</form>
 						</div> <!-- end of col -->
 						<div class="input-field col s6">
-							<form id="person-form" action="">
+							<form autocomplete="off" id="person-form" action="">
 								<label for="person-search">Actor/Actress Name</label>
-								<input type="text" class="validate" placeholder="ex. Chris Pratt" id="person-search">
+								<input type="text" class="autocomplete validate" placeholder="ex. Chris Pratt" id="person-search">
 								<br>
 								<button type="submit" class="btn waves-effect waves-red" id="person-submit"><i class="material-icons right">send</i>Submit</button>
 							</form>
@@ -97,6 +97,7 @@
 	<!-- Link to client-side methods first, as the rest will make use of them -->
 	<script src="assets/javascript/client-methods.js"></script>
 	<script src="assets/javascript/results-methods.js"></script>
+	<script type="text/javascript" src="autocomplete.js"></script>
 	<!-- Link to database event listeners and server-side methods -->
 	<script src="assets/javascript/database-mng.js"></script>
 	<script src="assets/javascript/server-methods.js"></script>
