@@ -26,8 +26,8 @@ function searchTMDBbyPerson(searchObject, searchKey) {
 			if (!wasSearchedBefore(searchObject.results.name, 'person')) {
 				// calls the next ajax function, sends object as an argument
 				actorInfo(searchObject, searchKey);
-			}
-			else {console.log('was already searched');}
+			} //recycles old search data
+			else {reuseSearchData(searchObject.results.name, 'person');}
 		}
 		else{
 			// Materialize.toast(message, displayLength, className, completeCallback);
@@ -122,8 +122,8 @@ function searchOMDBbyMovie(searchObject, searchKey) {
 				// calls function which listens for firebase uploading to finish 
 				// before redirecting to 'search.html'
 				afterLoadRedirectTo(searchObject, 'search.html');
-			}
-			else {console.log('already searched before');}
+			} //recycles old search data
+			else {reuseSearchData(searchObject.results.Title, 'movie');}
 				
 		} 
 		else{

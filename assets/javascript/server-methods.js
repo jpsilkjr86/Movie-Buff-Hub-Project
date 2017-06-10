@@ -54,7 +54,24 @@ function afterLoadRedirectTo(searchObject, destination) {
 }
 
 // function to update lastsearch by reusing a search entry from the user's search history
-function reuseSearchData(searchObject) {
+function reuseSearchData(query, queryType) {
+	var searchObject = {};
+	if (queryType === 'movie') {
+		// loops through user's search history and gets old search object data
+		searchObject = getSearchDataFromHistory(query, 'movie');
+	}
+	if (queryType === 'person') {
+		// loops through user's search history and gets old search object data
+		searchObject = getSearchDataFromHistory(query, 'person');
+	}
 	// reuses search object data to update lastsearch
 	database.ref('usersearches/' + searchObject.id + '/lastsearch').set(searchObject);
+	// redirects to search.html if not already there
+	afterLoadRedirectTo(searchObject, 'search.html');
 }
+
+// function to update lastsearch by reusing a search entry from the user's search history
+// function reuseSearchData(searchObject) {
+// 	// reuses search object data to update lastsearch
+// 	database.ref('usersearches/' + searchObject.id + '/lastsearch').set(searchObject);
+// }

@@ -158,25 +158,9 @@ function carouselClickHandler(query, queryType) {
 			// sends searchObject and searchKey as arguments for the ajax request
 			searchTMDBbyPerson(searchObject, searchKey);
 		}
-	} // i.e. if query was already searched before
-	else {
-		if (queryType === 'movie') {
-			// loops through user's search history and gets old search object data
-			var searchObject = getSearchDataFromHistory(query, 'movie');
-			// updates lastsearch with recycled object data to avoid duplicate entries
-			reuseSearchData(searchObject);
-			// redirects to search.html if not already there
-			afterLoadRedirectTo(searchObject, 'search.html');
-		}
-		if (queryType === 'person') {
-			// loops through user's search history and gets old search object data
-			var searchObject = getSearchDataFromHistory(query, 'person');
-			// updates lastsearch with recycled object data to avoid duplicate entries
-			reuseSearchData(searchObject);
-			// redirects to search.html if not already there
-			afterLoadRedirectTo(searchObject, 'search.html');
-		}				
-	} // end of else
+	} else { // i.e. if query was already searched before
+		reuseSearchData(query, queryType);		
+	}
 } // end of carouselClickHandler()
 
 function getSmallMovieCard(result) {

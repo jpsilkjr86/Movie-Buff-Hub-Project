@@ -27,12 +27,8 @@ $(document).ready(function(){
 				searchOMDBbyMovie(searchObject, searchKey);		
 			}
 			else { // i.e. if the search has been searched before
-  				// loops through user's search history and gets old search object data
-  				var searchObject = getSearchDataFromHistory(searchQuery, 'movie');
   				// updates lastsearch with recycled object data to avoid duplicate entries
-  				reuseSearchData(searchObject);
-  				// redirects to search.html if not already there
-  				afterLoadRedirectTo(searchObject, 'search.html');
+  				reuseSearchData(searchQuery, 'movie');
 			}
 		}
 		else {$('#my-modal-movie').modal('open');}			
@@ -57,12 +53,8 @@ $(document).ready(function(){
 				searchTMDBbyPerson(searchObject, searchKey);
 			}
 			else { // i.e. if the search has been searched before
-  				// loops through user's search history and gets old search object data
-  				var searchObject = getSearchDataFromHistory(personQuery, 'person');
   				// updates lastsearch with recycled object data to avoid duplicate entries
-  				reuseSearchData(searchObject);
-  				// redirects to search.html if not already there
-  				afterLoadRedirectTo(searchObject, 'search.html');
+  				reuseSearchData(personQuery, 'person');
 			}
 		}
 		else {$('#my-modal-actor').modal('open');}	
@@ -95,24 +87,7 @@ $(document).ready(function(){
 				searchTMDBbyPerson(searchObject, searchKey);
 			}
 		} // else, i.e. if query was already searched before
-		else {
-			if (queryType === 'movie') {
-				// loops through user's search history and gets old search object data
-  				var searchObject = getSearchDataFromHistory(query, 'movie');
-  				// updates lastsearch with recycled object data to avoid duplicate entries
-  				reuseSearchData(searchObject);
-  				// redirects to search.html if not already there
-  				afterLoadRedirectTo(searchObject, 'search.html');
-			}
-			if (queryType === 'person') {
-				// loops through user's search history and gets old search object data
-				var searchObject = getSearchDataFromHistory(query, 'person');
-				// updates lastsearch with recycled object data to avoid duplicate entries
-				reuseSearchData(searchObject);
-				// redirects to search.html if not already there
-				afterLoadRedirectTo(searchObject, 'search.html');
-			}				
-		} // end of else			
+		else {reuseSearchData(query, queryType);}
 	}); // end of link click event listener
 
 
