@@ -67,15 +67,17 @@ function getPersonSuggestionDiv (name, imgURL) {
 	 return div;
 }
 
+// checks to see if a search input is null or an empty string
 function isSearchInputEmpty(query) {
 	if (query == '' || query == null) {return true;}
 	if (query != '' && query != null) {return false;}
 }
 
-function wasSearchedBefore(query, queryType) {
+// checks to see if a query was searched before
+function wasSearchedBefore(queryArg, queryType) {
 	if (queryType ==='movie') {
 		for (var i = 0; i < allUserSearches.length; i++) {
-			if (query === allUserSearches[i].query || query === allUserSearches[i].results.Title) {
+			if (queryArg === allUserSearches[i].query || queryArg === allUserSearches[i].results.Title) {
 				return true;
 			}
 		}
@@ -83,12 +85,30 @@ function wasSearchedBefore(query, queryType) {
 	}
 	if (queryType ==='person') {
 		for (var i = 0; i < allUserSearches.length; i++) {
-			if (query === allUserSearches[i].query || query === allUserSearches[i].results.name) {
+			if (queryArg === allUserSearches[i].query || queryArg === allUserSearches[i].results.name) {
 				return true;
 			}
 		}
 		return false;
 	}	
+}
+
+// gets search data from search history in allUserSearches
+function getSearchDataFromHistory(query, queryType){
+	if (queryType ==='movie') {
+		for (var i = 0; i < allUserSearches.length; i++) {
+			if (query === allUserSearches[i].query || query === allUserSearches[i].results.Title) {
+				return allUserSearches[i];
+			}
+		}
+	}
+	if (queryType ==='person') {
+		for (var i = 0; i < allUserSearches.length; i++) {
+			if (query === allUserSearches[i].query || query === allUserSearches[i].results.name) {
+				return allUserSearches[i];
+			}
+		}
+	}
 }
 
 function getCarouselItem(result, resultType){
@@ -121,22 +141,43 @@ function getCarouselItem(result, resultType){
 }
 
 function carouselClickHandler(query, queryType) {
-	var searchKey = generateFirebaseSearchKey();
+	if (!wasSearchedBefore(query, queryType)) {
+		// gets a database key (unique id) for logging this search entry to firebase
+		var searchKey = generateFirebaseSearchKey();
 
-	// conditions for calling ajax requests
-	if (queryType === 'movie') {
-		// creates a searchObject for the new query
-		var searchObject = new searchDataObject(query, 'movie');
-		// sends searchObject and searchKey as arguments for the ajax request
-		searchOMDBbyMovie(searchObject, searchKey);
-	}
-	if (queryType === 'person') {
-		// creates a searchObject for the new query
-		var searchObject = new searchDataObject(query, 'person');
-		// sends searchObject and searchKey as arguments for the ajax request
-		searchTMDBbyPerson(searchObject, searchKey);
-	}
-}
+		// conditions for calling ajax requests
+		if (queryType === 'movie') {
+			// creates a searchObject for the new query
+			var searchObject = new searchDataObject(query, 'movie', searchKey);
+			// sends searchObject and searchKey as arguments for the ajax request
+			searchOMDBbyMovie(searchObject, searchKey);
+		}
+		if (queryType === 'person') {
+			// creates a searchObject for the new query
+			var searchObject = new searchDataObject(query, 'person', searchKey);
+			// sends searchObject and searchKey as arguments for the ajax request
+			searchTMDBbyPerson(searchObject, searchKey);
+		}
+	} // i.e. if query was already searched before
+	else {
+		if (queryType === 'movie') {
+			// loops through user's search history and gets old search object data
+			var searchObject = getSearchDataFromHistory(query, 'movie');
+			// updates lastsearch with recycled object data to avoid duplicate entries
+			reuseSearchData(searchObject);
+			// redirects to search.html if not already there
+			afterLoadRedirectTo(searchObject, 'search.html');
+		}
+		if (queryType === 'person') {
+			// loops through user's search history and gets old search object data
+			var searchObject = getSearchDataFromHistory(query, 'person');
+			// updates lastsearch with recycled object data to avoid duplicate entries
+			reuseSearchData(searchObject);
+			// redirects to search.html if not already there
+			afterLoadRedirectTo(searchObject, 'search.html');
+		}				
+	} // end of else
+} // end of carouselClickHandler()
 
 function getSmallMovieCard(result) {
 	

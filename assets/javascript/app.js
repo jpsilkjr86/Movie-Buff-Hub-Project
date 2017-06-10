@@ -21,14 +21,18 @@ $(document).ready(function(){
 				var searchKey = generateFirebaseSearchKey();
 
 				// uses searchDataObject object constructor for setting initial data object values
-				var searchObject = new searchDataObject(searchQuery, 'movie');
+				var searchObject = new searchDataObject(searchQuery, 'movie', searchKey);
 
 				// queries OMDB API and stores results onto firebase for convenient, persistent reference
 				searchOMDBbyMovie(searchObject, searchKey);		
 			}
 			else { // i.e. if the search has been searched before
-				// Materialize.toast(message, displayLength, className, completeCallback);
-  				Materialize.toast('You have already searched for this before.', 4000);
+  				// loops through user's search history and gets old search object data
+  				var searchObject = getSearchDataFromHistory(searchQuery, 'movie');
+  				// updates lastsearch with recycled object data to avoid duplicate entries
+  				reuseSearchData(searchObject);
+  				// redirects to search.html if not already there
+  				afterLoadRedirectTo(searchObject, 'search.html');
 			}
 		}
 		else {$('#my-modal-movie').modal('open');}			
@@ -47,14 +51,18 @@ $(document).ready(function(){
 				var searchKey = generateFirebaseSearchKey();
 
 				// uses searchDataObject object constructor for setting initial data object values
-				var searchObject = new searchDataObject(personQuery, 'person');
+				var searchObject = new searchDataObject(personQuery, 'person', searchKey);
 
 				// queries OMDB API and stores results onto firebase for convenient, persistent reference
 				searchTMDBbyPerson(searchObject, searchKey);
 			}
 			else { // i.e. if the search has been searched before
-				// Materialize.toast(message, displayLength, className, completeCallback);
-  				Materialize.toast('You have already searched for this before.', 4000);
+  				// loops through user's search history and gets old search object data
+  				var searchObject = getSearchDataFromHistory(personQuery, 'person');
+  				// updates lastsearch with recycled object data to avoid duplicate entries
+  				reuseSearchData(searchObject);
+  				// redirects to search.html if not already there
+  				afterLoadRedirectTo(searchObject, 'search.html');
 			}
 		}
 		else {$('#my-modal-actor').modal('open');}	
@@ -64,26 +72,48 @@ $(document).ready(function(){
 	$(document).on('click', '.link', function(event){
 		console.log($(this).attr('data-name'));
 		// prevents page from trying to seek the href link #
-		event.preventDefault();
-		// gets a database key (unique id) for logging this search entry to firebase
-		var searchKey = generateFirebaseSearchKey();
-		// gets the query from data-name
+		event.preventDefault();		
+		// gets the query and queryType from data
 		var query = $(this).attr('data-name');
+		var queryType = $(this).attr('data-type');
+		// if it was not already searched before, create new entry
+		if (!wasSearchedBefore(query, queryType)) {
+			// gets a database key (unique id) for logging this search entry to firebase
+			var searchKey = generateFirebaseSearchKey();
 
-		// conditions for calling ajax requests
-		if ($(this).attr('data-type') === 'movie') {
-			// creates a searchObject for the new query
-			var searchObject = new searchDataObject(query, 'movie');
-			// sends searchObject and searchKey as arguments for the ajax request
-			searchOMDBbyMovie(searchObject, searchKey);
-		}
-		if ($(this).attr('data-type') === 'person') {
-			// creates a searchObject for the new query
-			var searchObject = new searchDataObject(query, 'person');
-			// sends searchObject and searchKey as arguments for the ajax request
-			searchTMDBbyPerson(searchObject, searchKey);
-		}
-	});
+			// conditions for calling ajax requests
+			if (queryType === 'movie') {
+				// creates a searchObject for the new query
+				var searchObject = new searchDataObject(query, 'movie', searchKey);
+				// sends searchObject and searchKey as arguments for the ajax request
+				searchOMDBbyMovie(searchObject, searchKey);
+			}
+			if (queryType === 'person') {
+				// creates a searchObject for the new query
+				var searchObject = new searchDataObject(query, 'person', searchKey);
+				// sends searchObject and searchKey as arguments for the ajax request
+				searchTMDBbyPerson(searchObject, searchKey);
+			}
+		} // else, i.e. if query was already searched before
+		else {
+			if (queryType === 'movie') {
+				// loops through user's search history and gets old search object data
+  				var searchObject = getSearchDataFromHistory(query, 'movie');
+  				// updates lastsearch with recycled object data to avoid duplicate entries
+  				reuseSearchData(searchObject);
+  				// redirects to search.html if not already there
+  				afterLoadRedirectTo(searchObject, 'search.html');
+			}
+			if (queryType === 'person') {
+				// loops through user's search history and gets old search object data
+				var searchObject = getSearchDataFromHistory(query, 'person');
+				// updates lastsearch with recycled object data to avoid duplicate entries
+				reuseSearchData(searchObject);
+				// redirects to search.html if not already there
+				afterLoadRedirectTo(searchObject, 'search.html');
+			}				
+		} // end of else			
+	}); // end of link click event listener
 
 
 	// event listeners for data-management during development phase - DELETE BEFORE DEPLOYMENT
@@ -96,4 +126,5 @@ $(document).ready(function(){
 		// if user presses ?, displays user key in console
 		if (event.which === 63) {console.log(localStorage.getItem('User Key'));}
 	});
+
 }); // end of document ready

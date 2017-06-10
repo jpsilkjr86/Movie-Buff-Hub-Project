@@ -16,9 +16,10 @@ function generateFirebaseSearchKey() {
 
 // object constructur that returns a search data object. some of the data object's
 // properties will be updated after the ajax request is complete.
-function searchDataObject(query, queryType) {
+function searchDataObject(query, queryType, searchKey) {
 	this.query = query;
 	this.queryType = queryType;
+	this.searchKey = searchKey;
 	this.id = getUserKey();
 	this.timestamp = 0;
 	this.results = {};
@@ -30,8 +31,7 @@ function writeSearchData(searchObject, searchKey) {
 	searchObject.timestamp = firebase.database.ServerValue.TIMESTAMP;
 	// writes same data to two separate references in firebase
 	database.ref('allsearches/' + searchKey).set(searchObject);
-	database.ref('usersearches/' + searchObject.id + '/allsearches/' + searchKey).set(searchObject);	
-	// database.ref('usersearches/' + searchObject.id + '/lastsearch').set({});
+	database.ref('usersearches/' + searchObject.id + '/allsearches/' + searchKey).set(searchObject);
 	database.ref('usersearches/' + searchObject.id + '/lastsearch').set(searchObject);
 }
 
@@ -51,4 +51,10 @@ function afterLoadRedirectTo(searchObject, destination) {
 			}
 		});
 	}		
+}
+
+// function to update lastsearch by reusing a search entry from the user's search history
+function reuseSearchData(searchObject) {
+	// reuses search object data to update lastsearch
+	database.ref('usersearches/' + searchObject.id + '/lastsearch').set(searchObject);
 }
