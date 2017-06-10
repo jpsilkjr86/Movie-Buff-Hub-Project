@@ -16,6 +16,15 @@ var carouselIndex = 0;
 var carouselLoadTimeout;
 var isCarouselActive = false;
 
+// declares a local array variable for storing all user searches for comparison purposes
+var allUserSearches = [];
+
+// updates local variable with database in real time
+database.ref('usersearches/' + getUserKey() + '/allsearches').on('child_added', function(snapshot){
+  allUserSearches.push(snapshot.val());
+});
+
+
 // event listener for generating a materialize carousel
 database.ref('allsearches').on('child_added', function(snapshot){
   // if it is either a movie or person AND if the carousel has not yet been activated
