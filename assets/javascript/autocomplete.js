@@ -320,6 +320,7 @@ $(document).ready(function(){
 		"Kirk Douglas" : null,
 		"Alec Guinness" : null,
 		"Christopher Plummer" : null,
+		"Chris Pratt" : null,
 		"Tommy Lee Jones" : null,
 		"Sean Connery" : null,
 		"Alan Arkin" : null,
