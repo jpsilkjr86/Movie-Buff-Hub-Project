@@ -51,3 +51,12 @@ h3 {
 .link:hover {
 	cursor: pointer;
 }
+
+ul.dropdown-content {
+	margin-top: 10px;
+}
+
+@media screen and (max-width: 600px){
+	.responsive-img{width: 100%;}
+	body{width: 100%;}
+}
