@@ -124,6 +124,7 @@ function getCarouselItem(result, resultType){
 		// to do with the carousel() in-built functionality in materialize framework,
 		// but it works when i  attach it direclty to the DOM element itself via onclick
 		// attribute. see carouselClickHandler() below for more details.
+		// note: click event doesn't work on mobile devices - others on github forum having same issue.
 		item.attr("onclick", "carouselClickHandler('" + result.Title + "', 'movie')")
 			.attr("data-name", result.Title)
 			.attr("data-type", "movie");
