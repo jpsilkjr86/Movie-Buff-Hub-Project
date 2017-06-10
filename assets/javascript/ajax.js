@@ -77,10 +77,13 @@ function displayPopular () {
 	  	var c = Math.floor(Math.random() * 3);
 	  	var captions = ["center-align", "left-align", "right-align"];
 	  	$("#backgrounds").append(li);
-	  	li.append(img);
-	  	img.attr("src", "https://image.tmdb.org/t/p/w1280" + response.results[i].backdrop_path);
-	  	li.append(div);
-	  	
+	  	li.append(img)	  	
+	  	   .attr("data-type", "movie")
+	  	   .attr("data-name", response.results[i].title)	  	   
+	  	   .addClass("link");
+	  	img.attr("src", "https://image.tmdb.org/t/p/w1280" + response.results[i].backdrop_path)
+	  	   .attr("alt", response.results[i].title);
+	  	li.append(div);	  	
 	  	div.addClass("caption " + captions[c]);
 	  	div.append(h3);
 	  	h3.text(response.results[i].title);

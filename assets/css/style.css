@@ -47,3 +47,7 @@ h3 {
 	color: black;
 	text-align: center;
 }*/
+
+.link:hover {
+	cursor: pointer;
+}
